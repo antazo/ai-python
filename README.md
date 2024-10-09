@@ -1,6 +1,12 @@
 # azure-ai-python
 
-Access cognitive services using Python
+Access cognitive services using Python.
+
+This project is using:
+```
+pip install Flask
+```
+ * unittest
 
 # Resources
 
