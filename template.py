@@ -2,6 +2,7 @@
 
 # Add your actual code here
 def interstitial():
-    return "Hello, World!"
+    intro = "Hello, World!"
+    return intro
 
 print(interstitial())

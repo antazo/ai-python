@@ -1,9 +1,9 @@
 import unittest
-from template import interstitial  # Replace with actual function to test
+from template import interstitial
 
 class TestTemplate(unittest.TestCase):
     def test_interstitial(self):
-        self.assertEqual(interstitial(), "Hello, World!")  # Replace with actual test
+        self.assertEqual(interstitial(), "Hello, World!")
 
 if __name__ == '__main__':
     unittest.main()
