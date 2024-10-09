@@ -6,8 +6,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    trocola = request.args.get('name', 'Mundo')
-    return f"¡Hola {trocola}!"
+    name = request.args.get('name', 'Alex')
+    return f"Hello {name}!"
+
+@app.route('/bye')
+def bye():
+    name = request.args.get('name', 'Alex')
+    return f"Goodbye {name}!"
 
 if __name__ == '__main__':
     app.run(debug=True)
