@@ -1,14 +1,12 @@
 {
-    "python.testing.pytestArgs": [
-        "tests"
-    ],
-    "python.testing.pytestEnabled": false,
+    "python.testing.autoTestDiscoverOnSaveEnabled": true,
+    //"python.testing.debugPort": 8000,
     "python.testing.unittestEnabled": true,
     "python.testing.unittestArgs": [
         "-v",
         "-s",
-        "./tests",
+        "./py",
         "-p",
         "*_test.py"
-    ]
+    ],
 }
