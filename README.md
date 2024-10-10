@@ -7,6 +7,7 @@ This project is using:
 pip install Flask
 ```
  * unittest
+ * venv
 
 # Resources
 
