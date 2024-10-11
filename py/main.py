@@ -44,15 +44,9 @@ def planet_distances():
 
 @app.route('/foobar')
 def foobar():
-    name = request.args.get('name', 'Alex')
-    data = {
-    "name": name,
-    "city": "Doggerland"
-    }
+    body = f"<h1>Hello!</h1>"
 
-    # Convert dictionary to JSON string
-    json_data = json.dumps(data)
-    return json_data
+    return body
 
 if __name__ == '__main__':
     app.run(debug=True, port=8888)
