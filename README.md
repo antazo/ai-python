@@ -1,10 +1,26 @@
 # azure-ai-python
 
-Access cognitive services using Python.
+Access AI cognitive services using Python.
+
+## Virtual Environment (optional)
+
+We activate the virtual environment. On Linux:
+```
+# sudo apt-get install -y python3-pip python3-venv # Libraries needed
+# python3 -m venv my_venv # Do this to invoke the module and create the environment
+source venv/bin/activate
+```
+On Windows:
+```
+.\.venv\Scripts\activate
+```
+
+## Libraries
 
 This project is using:
 ```
-pip install Flask
+pip install Flask webdriver-manager
+pip3 install -U selenium
 ```
  * unittest
  * venv
