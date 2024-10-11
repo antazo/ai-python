@@ -19,11 +19,12 @@ On Windows:
 
 This project is using:
 ```
-pip install Flask webdriver-manager
+pip install Flask
 pip3 install -U selenium
+pip install webdriver-manager
+pip install pillow # We need PIL to open the screenshots created by selenium
 ```
  * unittest
- * venv
 
 # Resources
 
