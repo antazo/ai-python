@@ -1,6 +1,6 @@
-# azure-ai-python
+# ai-python
 
-Access AI cognitive services using Python.
+Access Microsoft Azure AI cognitive services using Python.
 
 ## Virtual Environment (optional)
 
