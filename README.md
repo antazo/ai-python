@@ -1,17 +1,17 @@
-# ai-python
+# Azure AI with Python
 
-Access Microsoft Azure AI and its cognitive services using Python.
+Access Microsoft Azure AI and its cognitive services using Python, Flask, and Selenium.
 
 ## Endpoints
 
 Run <b>app.py</b>:
 ```
-# Uses jinja2
 cd py/
 py app.py
 ```
 or:
 ```
+cd py/
 flask run
 ```
 
@@ -23,7 +23,9 @@ http://127.0.0.1:5000/
 
 ## Virtual Environment (optional)
 
-We activate the virtual environment. On Linux:
+We activate the virtual environment.
+
+On Linux:
 ```
 # sudo apt-get install -y python3-pip python3-venv # Libraries needed
 # python3 -m venv my_venv # Do this to invoke the module and create our environment called 'my_venv'

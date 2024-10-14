@@ -61,7 +61,7 @@ def generate_report():
 
 @app.route('/foobar')
 def foobar():
-    body = f"<h1>Hello!</h1>"
+    body = f"<h1>foobar</h1>"
 
     return body
 

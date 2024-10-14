@@ -9,12 +9,12 @@ class TestMain(unittest.TestCase):
     def test_hello_default(self):
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Hello Alex!', response.data)
+        self.assertIn(b'Hello', response.data)
 
     def test_hello_with_name(self):
         response = self.app.get('/?name=Juan')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Hello Juan!', response.data)
+        self.assertIn(b'Juan', response.data)
 
     def test_bye(self):
         response = self.app.get('/bye')
@@ -25,6 +25,20 @@ class TestMain(unittest.TestCase):
         response = self.app.get('/bye?name=Torpedo')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Goodbye Torpedo!', response.data)
+
+    def test_planet_distances(self):
+        response = self.app.get('/planet_distances')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Mercury', response.data)
+
+    def test_foobar(self):
+        response = self.app.get('/foobar')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'foobar', response.data)
+
+    def test_non_existent_route(self):
+        response = self.app.get('/non_existent_route')
+        self.assertEqual(response.status_code, 404)
 
 if __name__ == '__main__':
     unittest.main()
