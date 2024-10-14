@@ -31,11 +31,15 @@ Alternatively, we can automate this process by adding the list of modules to a <
 pip freeze >> requirements.txt
 ```
 
-Create this file for later use in our Dockerfile. It should look like this:
+Create this file for later use in our Dockerfile. It should look something like this:
 ```
 flask
 python-dotenv
 requests
+selenium
+webdriver-manager
+pillow
+
 ```
 
 To install them:
