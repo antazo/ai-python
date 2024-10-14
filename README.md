@@ -20,10 +20,7 @@ On Windows:
 
 This project is using:
 ```
-pip install Flask
-pip3 install -U selenium
-pip install webdriver-manager
-pip install pillow # We need PIL to open the screenshots created by selenium
+pip install flask python-dotenv requests selenium webdriver-manager pillow
 ```
 
 Alternatively, we can automate this process by adding the list of modules to a <b>requirements.txt</b>. To create one with the current modules installed in our environment:
