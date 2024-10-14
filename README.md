@@ -4,6 +4,17 @@ Access Microsoft Azure AI and its cognitive services using Python, Flask, and Se
 
 ## Endpoints
 
+Set the environment variables:
+```
+# Windows
+set FLASK_ENV=development
+```
+```
+# Linux/macOS
+export FLASK_ENV=development
+```
+
+
 Run <b>app.py</b>:
 ```
 cd py/
