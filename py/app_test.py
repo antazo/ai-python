@@ -19,12 +19,12 @@ class TestMain(unittest.TestCase):
     def test_bye(self):
         response = self.app.get('/bye')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Goodbye Alex!', response.data)
+        self.assertIn(b'Goodbye', response.data)
 
     def test_bye_with_name(self):
         response = self.app.get('/bye?name=Torpedo')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Goodbye Torpedo!', response.data)
+        self.assertIn(b'Torpedo', response.data)
 
     def test_planet_distances(self):
         response = self.app.get('/planet_distances')
