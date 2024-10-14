@@ -3,8 +3,10 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from PIL import Image
 import time
+import os
 
 # Initialize the WebDriver
+#driver = webdriver.Chrome()
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
 # Open the Flask application
@@ -13,9 +15,16 @@ driver.get('http://127.0.0.1:8888/')
 # Interact with the page
 print("/: " + driver.title)  # Print the title of the page
 print(driver.page_source) # Print the HTML content of the page
-driver.save_screenshot("../screenshots/ss.png") # Make screenshot
-screenshot = Image.open("../screenshots/ss.png")
-screenshot.show()
+
+# Make screenshot with exception handling
+screenshot_path = "../screenshots/ss.png"
+try:
+    os.makedirs(os.path.dirname(screenshot_path), exist_ok=True)
+    driver.save_screenshot(screenshot_path)
+    screenshot = Image.open(screenshot_path)
+    screenshot.show()
+except Exception as e:
+    print(f"Execute test from the 'py' root directory. Error saving screenshot: {e}")
 
 # Test the /planet_distances route
 driver.get('http://127.0.0.1:8888/planet_distances')
