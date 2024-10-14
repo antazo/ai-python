@@ -2,6 +2,20 @@
 
 Access Microsoft Azure AI and its cognitive services using Python.
 
+## Endpoints
+
+Run <b>main.py</b>:
+```
+cd py/
+py main.py
+```
+
+This should run the web application on localhost (port 8888):
+```
+http://127.0.0.1:8888/
+```
+
+
 ## Virtual Environment (optional)
 
 We activate the virtual environment. On Linux:
