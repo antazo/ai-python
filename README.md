@@ -1,18 +1,19 @@
 # ai-python
 
-Access Microsoft Azure AI cognitive services using Python.
+Access Microsoft Azure AI and its cognitive services using Python.
 
 ## Virtual Environment (optional)
 
 We activate the virtual environment. On Linux:
 ```
 # sudo apt-get install -y python3-pip python3-venv # Libraries needed
-# python3 -m venv my_venv # Do this to invoke the module and create the environment
-source venv/bin/activate
+# python3 -m venv my_venv # Do this to invoke the module and create our environment called 'my_venv'
+source my_venv/bin/activate
 ```
 On Windows:
 ```
-.\.venv\Scripts\activate
+# python -m venv my_venv # Do this to invoke the module and create our environment called 'my_venv'
+.\.my_venv\Scripts\activate
 ```
 
 ## Libraries
@@ -24,7 +25,6 @@ pip3 install -U selenium
 pip install webdriver-manager
 pip install pillow # We need PIL to open the screenshots created by selenium
 ```
- * unittest
 
 # Resources
 

@@ -9,10 +9,11 @@ def start():
     name = request.args.get('name', 'visitor')
     body = f"<h1>Hello {name}!</h1>"
     body += f"<p>This is created with Flask. These are the endpoints with examples:</p>"
-    body += f"<p><a href=\"hello?name=Alex\">hello?name=Alex</a></p>"
-    body += f"<p><a href=\"bye?name=Alex\">bye?name=Alex</a></p>"
-    body += f"<p><a href=\"planet_distances\">planet_distances</a></p>"
-    body += f"<p><a href=\"foobar\">foobar</a></p>"
+    body += f"<p><a href=\"hello?name=Alex\">/hello?name=Alex</a></p>"
+    body += f"<p><a href=\"bye?name=Alex\">/bye?name=Alex</a></p>"
+    body += f"<p><a href=\"planet_distances\">/planet_distances</a></p>"
+    body += f"<p><a href=\"generate_report?main_tank=80&external_tank=80&hydrogen_tank=75\">/generate_report?main_tank=80&external_tank=80&hydrogen_tank=75</a></p>"
+    body += f"<p><a href=\"foobar\">/foobar</a></p>"
     return body
 
 @app.route('/hello')
@@ -41,6 +42,18 @@ def planet_distances():
     # Convert dictionary to JSON string
     json_data = json.dumps(distances)
     return json_data
+
+@app.route('/generate_report')
+def generate_report():
+    main_tank = request.args.get('main_tank', '80')
+    external_tank = request.args.get('external_tank', '70')
+    hydrogen_tank = request.args.get('hydrogen_tank', '75')
+    output = f"""Fuel Report:
+    Main tank: {main_tank}
+    External tank: {external_tank}
+    Hydrogen tank: {hydrogen_tank} 
+    """
+    return output
 
 @app.route('/foobar')
 def foobar():
