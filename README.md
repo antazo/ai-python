@@ -4,15 +4,20 @@ Access Microsoft Azure AI and its cognitive services using Python.
 
 ## Endpoints
 
-Run <b>main.py</b>:
+Run <b>app.py</b>:
 ```
+# Uses jinja2
 cd py/
-py main.py
+py app.py
+```
+or:
+```
+flask run
 ```
 
-This should run the web application on localhost (port 8888):
+This should run the web application on localhost (port 5000):
 ```
-http://127.0.0.1:8888/
+http://127.0.0.1:5000/
 ```
 
 

@@ -9,8 +9,10 @@ import os
 #driver = webdriver.Chrome()
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
+WWW_PATH = "http://127.0.0.1:5000"
+
 # Open the Flask application
-driver.get('http://127.0.0.1:8888/')
+driver.get(WWW_PATH)
 
 # Interact with the page
 print("/: " + driver.title)  # Print the title of the page
@@ -27,11 +29,11 @@ except Exception as e:
     print(f"Execute test from the 'py' root directory. Error saving screenshot: {e}")
 
 # Test the /planet_distances route
-driver.get('http://127.0.0.1:8888/planet_distances')
+driver.get(WWW_PATH + '/planet_distances')
 print("/planet_distances: " + driver.title)
 
 # Test the /foobar route
-driver.get('http://127.0.0.1:8888/foobar')
+driver.get(WWW_PATH + '/foobar')
 print("/foobar: " + driver.title)
 
 # Close the WebDriver

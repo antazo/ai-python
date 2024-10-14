@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import json
-from flask import Flask, request
+from flask import Flask, redirect, url_for, request, render_template, session
 
 app = Flask(__name__)
 
@@ -9,12 +9,16 @@ def start():
     name = request.args.get('name', 'visitor')
     body = f"<h1>Hello {name}!</h1>"
     body += f"<p>This is created with Flask. These are the endpoints with examples:</p>"
+    body += f"<p><a href=\"translator\">/translator</a></p>"
     body += f"<p><a href=\"hello?name=Alex\">/hello?name=Alex</a></p>"
     body += f"<p><a href=\"bye?name=Alex\">/bye?name=Alex</a></p>"
     body += f"<p><a href=\"planet_distances\">/planet_distances</a></p>"
     body += f"<p><a href=\"generate_report?main_tank=80&external_tank=80&hydrogen_tank=75\">/generate_report?main_tank=80&external_tank=80&hydrogen_tank=75</a></p>"
-    body += f"<p><a href=\"foobar\">/foobar</a></p>"
     return body
+
+@app.route('/translator', methods=['GET'])
+def translator():
+    return render_template('translator.html')
 
 @app.route('/hello')
 def hello():
@@ -62,4 +66,4 @@ def foobar():
     return body
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8888)
+    app.run(debug=True, port=5000)
