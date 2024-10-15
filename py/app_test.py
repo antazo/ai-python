@@ -1,7 +1,8 @@
 import unittest
-from py.app import app
+from app import app
+import pytest
 
-class TestMain(unittest.TestCase):
+class TestApp(unittest.TestCase):
     def setUp(self):
         self.app = app.test_client()
         self.app.testing = True
