@@ -1,13 +1,20 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from PIL import Image
 import time
 import os
 
+# Headless mode
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+
 # Initialize the WebDriver
-driver = webdriver.Chrome()
+#driver = webdriver.Chrome()
 #driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+driver = webdriver.Chrome(options=chrome_options)
+
 
 WWW_PATH = "http://127.0.0.1:5000"
 
