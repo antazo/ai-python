@@ -6,14 +6,24 @@ from PIL import Image
 import time
 import os
 
-# Headless mode
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-
 # Initialize the WebDriver
-#driver = webdriver.Chrome()
-#driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-driver = webdriver.Chrome(options=chrome_options)
+#chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+chrome_service = Service(ChromeDriverManager().install())
+
+chrome_options = Options()
+options = [
+    "--headless",
+    "--disable-gpu",
+    "--window-size=1920,1200",
+    "--ignore-certificate-errors",
+    "--disable-extensions",
+    "--no-sandbox",
+    "--disable-dev-shm-usage"
+]
+for option in options:
+    chrome_options.add_argument(option)
+
+driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
 
 WWW_PATH = "http://127.0.0.1:5000"
