@@ -2,6 +2,3 @@ flask
 python-dotenv
 requests
 pytest
-selenium
-webdriver-manager
-pillow
