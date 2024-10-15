@@ -6,8 +6,8 @@ import time
 import os
 
 # Initialize the WebDriver
-#driver = webdriver.Chrome()
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+driver = webdriver.Chrome()
+#driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
 WWW_PATH = "http://127.0.0.1:5000"
 
