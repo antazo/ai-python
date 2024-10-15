@@ -1,6 +1,6 @@
 # Azure AI with Python
 
-Access Microsoft Azure AI and its cognitive services using Python, Flask, and Selenium.
+Access Microsoft Azure AI and its cognitive services using Python, and Flask.
 
 ## Endpoints
 
@@ -52,7 +52,7 @@ On Windows:
 
 This project is using:
 ```
-pip install flask python-dotenv requests selenium webdriver-manager pillow
+pip install flask python-dotenv requests pytest
 ```
 
 Alternatively, we can automate this process by adding the list of modules to a <b>requirements.txt</b>. To create one with the current modules installed in our environment:
@@ -65,9 +65,7 @@ Create this file for later use in our Dockerfile. It should look something like 
 flask
 python-dotenv
 requests
-selenium
-webdriver-manager
-pillow
+pytest
 
 ```
 
