@@ -10,15 +10,15 @@ def start():
     name = request.args.get('name', 'visitor')
     body = f"<h1>Hello {name}!</h1>"
     body += f"<p>This is created with Flask. These are the endpoints with examples:</p>"
-    body += f"<p><a href=\"translator\">/translator</a></p>"
+    body += f"<p><a href=\"translator\">/translator</a>: uses Azure AI translator cognitive services.</p>"
+    body += f"<p><a href=\"game\">/game</a>: play rock, paper, scissors, lizard, Spock!</p>"
     body += f"<h1>Tests:</h1>"
-    body += f"<p><a href=\"game\">/game</a></p>"
-    body += f"<p><a href=\"foobar\">/foobar</a></p>"
-    body += f"<p><a href=\"hello?name=Alex\">/hello?name=Alex</a></p>"
-    body += f"<p><a href=\"bye?name=Alex\">/bye?name=Alex</a></p>"
-    body += f"<h1>REST:</h1>"
-    body += f"<p><a href=\"planet_distances\">/planet_distances</a></p>"
+    body += f"<p><a href=\"foobar\">/foobar</a>: lorem ipsum</p>"
+    body += f"<p><a href=\"hello?name=Alex\">/hello?name=Alex</a>: your favorite 'Hello World'.</p>"
+    body += f"<p><a href=\"bye?name=Torped@\">/bye?name=Torped@</a>: idem, to play with serialization.</p>"
     body += f"<p><a href=\"generate_report?main_tank=80&external_tank=80&hydrogen_tank=75\">/generate_report?main_tank=80&external_tank=80&hydrogen_tank=75</a></p>"
+    body += f"<h1>REST:</h1>"
+    body += f"<p><a href=\"planet_distances\">/planet_distances</a>: distances of all the planets from the Solar System to the Earth.</p>"
     return body
 
 @app.route('/translator', methods=['GET'])
