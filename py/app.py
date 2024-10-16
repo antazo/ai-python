@@ -11,10 +11,12 @@ def start():
     body = f"<h1>Hello {name}!</h1>"
     body += f"<p>This is created with Flask. These are the endpoints with examples:</p>"
     body += f"<p><a href=\"translator\">/translator</a></p>"
+    body += f"<h1>Tests:</h1>"
     body += f"<p><a href=\"game\">/game</a></p>"
     body += f"<p><a href=\"foobar\">/foobar</a></p>"
     body += f"<p><a href=\"hello?name=Alex\">/hello?name=Alex</a></p>"
     body += f"<p><a href=\"bye?name=Alex\">/bye?name=Alex</a></p>"
+    body += f"<h1>REST:</h1>"
     body += f"<p><a href=\"planet_distances\">/planet_distances</a></p>"
     body += f"<p><a href=\"generate_report?main_tank=80&external_tank=80&hydrogen_tank=75\">/generate_report?main_tank=80&external_tank=80&hydrogen_tank=75</a></p>"
     return body
@@ -68,41 +70,52 @@ def game():
         def __init__(self):
             self.player = None
             self.enemy = None
+            self.switcher = {
+                "rock": 0,
+                "paper": 1,
+                "scissors": 2,
+                "lizard": 3,
+                "spock": 4
+            }
+            self.rules = [
+                [0, -1, 1, 1, -1],
+                [1, 0, -1, -1, 1],
+                [-1, 1, 0, 1, -1],
+                [-1, 1, -1, 0, 1],
+                [1, -1, 1, -1, 0]
+            ]
+
+        def toNumericalChoice(self, choice):
+            return self.switcher[choice]
 
         def play(self):
-            if self.player == self.enemy:
-                return "It's a tie!"
-            elif self.player == "rock":
-                if self.enemy == "scissors":
-                    return "You win!"
-                else:
-                    return "You lose!"
-            elif self.player == "scissors":
-                if self.enemy == "paper":
-                    return "You win!"
-                else:
-                    return "You lose!"
-            elif self.player == "paper":
-                if self.enemy == "rock":
-                    return "You win!"
-                else:
-                    return "You lose!"
+
+            player_num = self.toNumericalChoice(self.player)
+            enemy_num = self.toNumericalChoice(self.enemy)
+
+            if self.rules[player_num][enemy_num] == 1:
+                return "You win!"
+            elif self.rules[player_num][enemy_num] == -1:
+                return "You lose!"
             else:
-                return "Invalid input!"
+                return "It's a tie!"
 
     game = GameRockPaperScissors()
     body = f"<h1>/game</h1>"
-    body += f"<p>Choose rock, paper, or scissors:</p>"
-    body += f"<p><a href=\"game?choice=rock\">rock</a></p>"
-    body += f"<p><a href=\"game?choice=paper\">paper</a></p>"
-    body += f"<p><a href=\"game?choice=scissors\">scissors</a></p>"
-    choicePlayer = request.args.get('choice')
-    choiceEnemy = random.choice(["rock", "paper", "scissors"])
+    body += f"<p align=\"center\">Choose:</p>"
+    for key in game.switcher.keys():
+        body += f"<p align=\"center\"><a href=\"game?choice={key}\">{key}</a></p>"
+    choicePlayer = request.args.get('choice').lower() if request.args.get('choice') in list(game.switcher.keys()) else None
+    choiceEnemy = random.choice(list(game.switcher.keys()))
     if choicePlayer:
         game.player = choicePlayer
         game.enemy = choiceEnemy
         result = game.play()
-        body += f"<p>Enemy chooses <b>{choiceEnemy}</b>: {result}</p>"
+        body += f"</br>"
+        body += f"<p align=\"center\">Enemy chooses <b>{choiceEnemy}</b>...</p>"
+        body += f"<p align=\"center\">Yours is <b>{choicePlayer}</b>: {result}</p>"
+        body += f"<p align=\"center\"><button onclick=\"window.location.href='/game?choice={choicePlayer}'\">Replay?</button></p>"
+
     return body
 
 @app.route('/foobar')
