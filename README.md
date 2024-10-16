@@ -76,7 +76,7 @@ pip install -r requirements.txt
 
 # Resources
 
-## Python
+## Python (Spanish)
 
 1. Python para principiantes
 * https://learn.microsoft.com/es-es/training/paths/beginner-python/
