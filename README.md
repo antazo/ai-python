@@ -45,15 +45,39 @@ To install them:
 pip install -r requirements.txt
 ```
 
+## Using Kubernetes (Minikube)
+
+Start:
+```
+minikube start --driver=docker
+```
+
+Build the Docker image inside Minikube:
+```
+eval $(minikube -p minikube docker-env)
+docker build -t ai-python-app .
+```
+
+Apply the Deployment and Service YAML files:
+```
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+
+Access the Flask application:
+```
+minikube service flask-app-service
+```
+
 ## Using Dockerfile
 
 Build the Docker image:
 ```
-docker build -t my-python-app .
+docker build -t ai-python-app .
 ```
 Run the image:
 ```
-docker run -p 5000:5000 my-python-app
+docker run -p 5000:5000 ai-python-app
 ```
 
 # Azure Portal
