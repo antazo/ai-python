@@ -40,10 +40,10 @@ jobs:
     #- name: Chrome browser (latest)
     #  run: |
     #    chrome --version
-    #- name: Install requirements and run the server to enable GitHub run tests
-    #  run: |
-    #    pip install -r requirements.txt
-    #    python py/app.py
+    
+    - name: Install requirements
+      run: |
+        pip install -r requirements.txt
         
     - name: Test with pytest
       run: |
