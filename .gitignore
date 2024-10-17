@@ -1,5 +1,5 @@
 # Custom
-my_venv/*
+my_venv/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
