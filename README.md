@@ -44,7 +44,7 @@ To install them:
 pip install -r requirements.txt
 ```
 
-# Using Dockerfile
+## Using Dockerfile
 
 Build the Docker image:
 ```
@@ -55,7 +55,7 @@ Run the image:
 docker run -p 5000:5000 my-python-app
 ```
 
-## Azure Portal
+# Azure Portal
 
 This application uses a valid subscription to Azure Portal with Translator and other services. To be able to use your own endpoint, the information must be stored in a <b>.env</b> file:
 ```
@@ -68,7 +68,7 @@ ENDPOINT=your_endpoint
 LOCATION=your_location
 ```
 
-## Web Server
+# Web Server
 
 Set the environment variables:
 ```
