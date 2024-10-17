@@ -71,6 +71,18 @@ To install them:
 pip install -r requirements.txt
 ```
 
+# Using Dockerfile
+
+Build the Docker image:
+```
+docker build -t my-python-app .
+```
+Run the image:
+```
+docker run -p 5000:5000 my-python-app
+```
+
+
 # Resources
 
 ## Python (Spanish)
