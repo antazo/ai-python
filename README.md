@@ -4,17 +4,17 @@ Access Microsoft Azure AI and its cognitive services using Python, and Flask.
 
 ## Virtual Environment
 
-We activate the virtual environment.
+If we want to use a virtual environment, we need to invoke the <b>venv</b> module, and activate it. In my case, I'm calling it <b>my_env</b>:
 
 On Linux:
 ```
 # sudo apt-get install -y python3-pip python3-venv # Libraries needed
-python3 -m venv my_venv # Do this to invoke the module and create our environment called 'my_venv'
+python3 -m venv my_venv
 source ./my_venv/bin/activate
 ```
 On Windows:
 ```
-python -m venv my_venv # Do this to invoke the module and create our environment called 'my_venv'
+python -m venv my_venv
 .\.my_venv\Scripts\activate
 ```
 
@@ -25,12 +25,12 @@ This project is using:
 pip install flask flask-swagger-ui python-dotenv requests pytest
 ```
 
-Alternatively, we can automate this process by adding the list of modules to a <b>requirements.txt</b>. To create one with the current modules installed in our environment:
+Optionally, we can automate this process by adding the list of modules to <b>requirements.txt</b>. To create one with the current modules installed in our environment:
 ```
 pip freeze >> requirements.txt
 ```
 
-Create this file for later use in our Dockerfile. It should look something like this:
+Create this file for later use in our Dockerfile or CI pipeline. It should look something like this:
 ```
 flask
 flask-swagger-ui
@@ -45,40 +45,6 @@ To install them:
 pip install -r requirements.txt
 ```
 
-## Using Dockerfile
-
-Build the Docker image:
-```
-docker build -t ai-python-app .
-```
-Run the image:
-```
-docker run -p 5000:5000 ai-python-app
-```
-
-## Using Kubernetes (Minikube)
-
-Start:
-```
-minikube start --driver=docker
-```
-
-Build the Docker image inside Minikube:
-```
-eval $(minikube -p minikube docker-env)
-docker build -t ai-python-app .
-```
-
-Apply the Deployment and Service YAML files:
-```
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-```
-
-Access the Flask application:
-```
-minikube service flask-app-service
-```
 
 # Azure Portal
 
@@ -93,7 +59,7 @@ ENDPOINT=your_endpoint
 LOCATION=your_location
 ```
 
-# Web Server
+# Using local Web Server
 
 Set the environment variables:
 ```
@@ -104,7 +70,6 @@ set FLASK_ENV=development
 # Linux/macOS
 export FLASK_ENV=development
 ```
-
 
 Run <b>app.py</b>:
 ```
@@ -119,6 +84,42 @@ This should run the web application on localhost (port 5000):
 </br>
 <a target="_blank" href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a>
 
+
+# Using Dockerfile
+
+Build the Docker image:
+```
+docker build -t ai-python-app .
+```
+Run the image:
+```
+docker run -p 5000:5000 ai-python-app
+```
+
+# Using Kubernetes (Minikube)
+
+Start K8s:
+```
+minikube start --driver=docker
+```
+
+Build the Docker image inside Minikube:
+```
+eval $(minikube -p minikube docker-env)
+# if "eval" isn't working, you must be using CMD on Windows. In that case, do it manually, copy&paste
+docker build -t ai-python-app .
+```
+
+Apply the Deployment and Service YAML files:
+```
+kubectl apply -f static/deployment.yaml
+kubectl apply -f static/service.yaml
+```
+
+Access the Flask application:
+```
+minikube service flask-app-service
+```
 
 # Resources
 
