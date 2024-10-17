@@ -2,33 +2,6 @@
 
 Access Microsoft Azure AI and its cognitive services using Python, and Flask.
 
-## Endpoints
-
-Set the environment variables:
-```
-# Windows
-set FLASK_ENV=development
-```
-```
-# Linux/macOS
-export FLASK_ENV=development
-```
-
-
-Run <b>app.py</b>:
-```
-py app.py
-```
-or:
-```
-flask run
-```
-
-This should run the web application on localhost (port 5000):
-</br>
-<a target="_blank" href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a>
-
-
 ## Virtual Environment (optional)
 
 We activate the virtual environment.
@@ -81,6 +54,45 @@ Run the image:
 ```
 docker run -p 5000:5000 my-python-app
 ```
+
+## Azure Portal
+
+This application uses a valid subscription to Azure Portal with Translator and other services. To be able to use your own endpoint, the information must be stored in a <b>.env</b> file:
+```
+touch .env
+```
+Save your key-values like this:
+```
+KEY=your_key
+ENDPOINT=your_endpoint
+LOCATION=your_location
+```
+
+## Web Server
+
+Set the environment variables:
+```
+# Windows
+set FLASK_ENV=development
+```
+```
+# Linux/macOS
+export FLASK_ENV=development
+```
+
+
+Run <b>app.py</b>:
+```
+py app.py
+```
+or:
+```
+flask run
+```
+
+This should run the web application on localhost (port 5000):
+</br>
+<a target="_blank" href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a>
 
 
 # Resources

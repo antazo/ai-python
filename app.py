@@ -2,7 +2,7 @@
 import json
 import random
 from flask import Flask, redirect, url_for, request, render_template, session
-import requests, os, uuid, json
+import requests, os, uuid
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -29,7 +29,7 @@ def translator():
     return render_template('translator.html')
 
 @app.route('/translator', methods=['POST'])
-def index_post():
+def translator_post():
     # Read the values from the form
     original_text = request.form['text']
     target_language = request.form['language']
