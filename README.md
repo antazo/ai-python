@@ -25,7 +25,8 @@ flask run
 ```
 
 This should run the web application on localhost (port 5000):
-<a href="#" onclick='window.open("http://127.0.0.1:5000/");return false;'>http://127.0.0.1:5000/</a>
+</br>
+<a target="_blank" href="http://127.0.0.1:5000/">[Example](http://127.0.0.1:5000/)</a>
 
 
 ## Virtual Environment (optional)
