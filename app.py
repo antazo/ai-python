@@ -4,16 +4,29 @@ import random
 from flask import Flask, redirect, url_for, request, render_template, session
 import requests, os, uuid
 from dotenv import load_dotenv
+from flask_swagger_ui import get_swaggerui_blueprint
+
 load_dotenv()
 
 app = Flask(__name__)
+
+SWAGGER_URL = '/swagger'
+API_URL = '/static/swagger.yaml'
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name': "Flask API"
+    }
+)
+app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 @app.route('/')
 def start():
     name = request.args.get('name', 'visitor')
     body = f"<h1>Hello {name}!</h1>"
     body += f"<p>This is created with Flask. These are the endpoints with examples:</p>"
-    body += f"<p><a href=\"translator\">/translator</a>: uses Azure AI translator cognitive services.</p>"
+    body += f"<p><a href=\"translator\">/translator</a>: uses Azure AI Translator cognitive service.</p>"
     body += f"<p><a href=\"game\">/game</a>: play rock, paper, scissors, lizard, Spock!</p>"
     body += f"<h1>Tests:</h1>"
     body += f"<p><a href=\"foobar\">/foobar</a>: lorem ipsum</p>"
@@ -22,6 +35,7 @@ def start():
     body += f"<p><a href=\"generate_report?main_tank=80&external_tank=80&hydrogen_tank=75\">/generate_report?main_tank=80&external_tank=80&hydrogen_tank=75</a></p>"
     body += f"<h1>REST:</h1>"
     body += f"<p><a href=\"planet_distances\">/planet_distances</a>: distances of all the planets from the Solar System to the Earth.</p>"
+    body += f"<p>[<a href=\"swagger\">swagger</a> page]</p>"
     return body
 
 @app.route('/translator', methods=['GET'])

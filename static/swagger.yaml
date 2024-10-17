@@ -1,0 +1,12 @@
+openapi: 3.0.0
+info:
+  title: Flask API
+  version: 1.0.0
+paths:
+  /planet_distances:
+    get:
+      summary: Planet distances
+      description: Returns the distances of all the planets from the Solar System to the Earth.
+      responses:
+        '200':
+          description: Successful response

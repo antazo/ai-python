@@ -22,7 +22,7 @@ python -m venv my_venv # Do this to invoke the module and create our environment
 
 This project is using:
 ```
-pip install flask python-dotenv requests pytest
+pip install flask flask-swagger-ui python-dotenv requests pytest
 ```
 
 Alternatively, we can automate this process by adding the list of modules to a <b>requirements.txt</b>. To create one with the current modules installed in our environment:
@@ -33,6 +33,7 @@ pip freeze >> requirements.txt
 Create this file for later use in our Dockerfile. It should look something like this:
 ```
 flask
+flask-swagger-ui
 python-dotenv
 requests
 pytest
