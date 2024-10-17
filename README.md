@@ -17,18 +17,16 @@ export FLASK_ENV=development
 
 Run <b>app.py</b>:
 ```
-cd py/
 py app.py
 ```
 or:
 ```
-cd py/
 flask run
 ```
 
 This should run the web application on localhost (port 5000):
 ```
-http://127.0.0.1:5000/
+<a href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a>
 ```
 
 
@@ -39,12 +37,12 @@ We activate the virtual environment.
 On Linux:
 ```
 # sudo apt-get install -y python3-pip python3-venv # Libraries needed
-# python3 -m venv my_venv # Do this to invoke the module and create our environment called 'my_venv'
+python3 -m venv my_venv # Do this to invoke the module and create our environment called 'my_venv'
 source ./my_venv/bin/activate
 ```
 On Windows:
 ```
-# python -m venv my_venv # Do this to invoke the module and create our environment called 'my_venv'
+python -m venv my_venv # Do this to invoke the module and create our environment called 'my_venv'
 .\.my_venv\Scripts\activate
 ```
 
