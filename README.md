@@ -2,7 +2,7 @@
 
 Access Microsoft Azure AI and its cognitive services using Python, and Flask.
 
-## Virtual Environment (optional)
+## Virtual Environment
 
 We activate the virtual environment.
 
@@ -45,6 +45,17 @@ To install them:
 pip install -r requirements.txt
 ```
 
+## Using Dockerfile
+
+Build the Docker image:
+```
+docker build -t ai-python-app .
+```
+Run the image:
+```
+docker run -p 5000:5000 ai-python-app
+```
+
 ## Using Kubernetes (Minikube)
 
 Start:
@@ -67,17 +78,6 @@ kubectl apply -f service.yaml
 Access the Flask application:
 ```
 minikube service flask-app-service
-```
-
-## Using Dockerfile
-
-Build the Docker image:
-```
-docker build -t ai-python-app .
-```
-Run the image:
-```
-docker run -p 5000:5000 ai-python-app
 ```
 
 # Azure Portal
