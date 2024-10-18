@@ -146,12 +146,22 @@ Apply the Deployment and Service YAML files:
 ```bash
 kubectl apply -f static/deployment.yaml
 kubectl apply -f static/service.yaml
+kubectl apply -f static/pod.yaml
 ```
 
 Access the Flask application:
 
 ```bash
-minikube service flask-app-service
+minikube service ai-flask-app-service
+```
+
+Troubleshoot:
+
+```bash
+kubectl get pods
+kubectl describe pod ai-flask-app
+kubectl get services
+kubectl describe service ai-flask-app-service
 ```
 
 ## Resources

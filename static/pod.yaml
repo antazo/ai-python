@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ai-flask-app
+  labels:
+    app: ai-flask-app
+spec:
+  containers:
+  - name: ai-flask-app
+    image: ai-python-app:latest
+    ports:
+    - containerPort: 5000
+    resources:
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+      requests:
+        memory: "256Mi"
+        cpu: "250m"
