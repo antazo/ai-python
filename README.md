@@ -124,6 +124,26 @@ Run the image:
 docker run -p 5000:5000 ai-python-app
 ```
 
+## Pushing an image to your own Docker Hub
+
+Tag the Docker image:
+
+```bash
+docker tag ai-python-app:latest your-dockerhub-username/ai-python-app:latest
+```
+
+Log in to Docker:
+
+```bash
+docker login
+```
+
+Push the Docker image:
+
+```bash
+docker push your-dockerhub-username/ai-python-app:latest
+```
+
 ## Using Kubernetes (Minikube)
 
 Start K8s:
