@@ -137,6 +137,7 @@ Build the Docker image inside Minikube:
 ```bash
 eval $(minikube -p minikube docker-env)
 # if "eval" isn't working, you must be using CMD on Windows. In that case, do it manually, copy&paste.
+# You need to point the shell to minikube's docker-daemon before building the Docker image.
 docker build -t ai-python-app .
 ```
 
