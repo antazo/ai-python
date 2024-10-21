@@ -175,6 +175,10 @@ def game():
         <title>/game</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
         <style>
+            .choose {{
+                text-align: center;
+                font-size: 36px;
+            }}
             .result {{
                 text-align: center;
                 font-size: 24px;
@@ -189,13 +193,13 @@ def game():
         html_content += f"<p><a href=\"game?choice={key}\">{key}</a></p>"
     choicePlayer = request.args.get('choice').lower() if request.args.get('choice') in list(game.switcher.keys()) else None
     choiceEnemy = random.choice(list(game.switcher.keys()))
-        
+    html_content += f"</div>"
+    
     if choicePlayer:
         game.player = choicePlayer
         game.enemy = choiceEnemy
         result = game.play()
         html_content += f"""
-            </div>
             <div class="result">
                 <p>Enemy chooses <b>{choiceEnemy}</b>...</p>
                 <p>Yours is <b>{choicePlayer}</b>: {result}</p>
@@ -204,7 +208,12 @@ def game():
         """
     html_content += f"""
         <script>
+            gsap.from(".choose", {{duration: 1, opacity: 0, y: -50}});
             gsap.from(".result", {{duration: 1, opacity: 0, y: -50}});
+            gsap.from(".result", {{duration: 1, x: -100}});
+            gsap.from(".result", {{duration: 1, scale: 0}});
+            gsap.from(".result", {{duration: 1, rotation: 360}});
+            gsap.from(".result", {{duration: 1, y: -100, ease: "bounce"}});
         </script>
     </body>
     </html>
