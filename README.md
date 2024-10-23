@@ -2,12 +2,12 @@
 
 Access Microsoft Azure AI advanced capabilities (Cognitive Services) using Python. A valid subscription to Azure is needed for your own endpoints:
 
- * Translator
- * Computer Vision (pending)
+* Translator
+* Computer Vision (pending)
 
 This repository uses virtual environments, CI pipelines (GitHub Actions), and containerization as optional.
 
-## Installation
+## 1. Installation
 
 Clone (or fork) this git repository:
 
@@ -16,7 +16,7 @@ git clone https://github.com/antazo/ai-python.git
 cd ai-python
 ```
 
-### Virtual Environment
+### 1.1 Virtual Environment (optional)
 
 If we want to use a virtual environment, we need to invoke the **venv** module, and activate it. In my case, I'm calling it **my_env**:
 
@@ -35,7 +35,7 @@ py -3 -m venv my_venv
 .\.my_venv\Scripts\activate
 ```
 
-## Libraries
+## 2. Libraries
 
 This project is using:
 
@@ -66,12 +66,12 @@ To install them:
 pip install -r requirements.txt
 ```
 
-## Azure Portal
+## 3. Azure Portal
 
 This application uses a valid subscription to Azure Portal with Translator and other services. To be able to use your own endpoint, the information must be stored in a **.env** file:
 
 ```bash
-touch .env
+nano .env
 ```
 
 Save your key-values like this:
@@ -82,7 +82,9 @@ ENDPOINT=your_endpoint
 LOCATION=your_location
 ```
 
-## Using local Web Server
+## 4. Deployment
+
+### 4.1 Using local Web Server
 
 Set the environment variables.
 
@@ -113,9 +115,9 @@ flask run
 This should run the web application on localhost (port 5000):  
 [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
-## Using Dockerfile
+### 4.2 Using Dockerfile
 
-Build the Docker image:
+To containerize this application, build the Docker image by using the Dockerfile included:
 
 ```bash
 docker build -t ai-python-app .
@@ -127,7 +129,7 @@ Run the image:
 docker run -p 5000:5000 ai-python-app
 ```
 
-## Pushing an image to your own Docker Hub
+### 4.3 Pushing the image to your own Docker Hub
 
 Tag the Docker image:
 
@@ -135,7 +137,7 @@ Tag the Docker image:
 docker tag ai-python-app:latest [username]/ai-python-app:latest
 ```
 
-Log in to Docker:
+Log in to your Docker Hub:
 
 ```bash
 docker login
@@ -147,7 +149,10 @@ Push the Docker image:
 docker push [username]/ai-python-app:latest
 ```
 
-## Using Kubernetes (Minikube)
+You can use the image from my Docker Hub for integration tests (the keys are not valid for E2E tests):
+[https://hub.docker.com/repository/docker/antazo/ai-python-app/general](https://hub.docker.com/repository/docker/antazo/ai-python-app/general)
+
+### 4.4 Using Kubernetes (Minikube)
 
 Start K8s:
 
@@ -189,7 +194,7 @@ kubectl describe service ai-flask-app-service
 
 ## Resources
 
-## Python (Spanish)
+### Python (Spanish)
 
 1. Python para principiantes
 
