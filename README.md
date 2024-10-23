@@ -1,8 +1,11 @@
 # Azure AI with Python
 
-Access Microsoft Azure AI and its cognitive services using Python, and Flask. A valid subscription to Azure is needed for your endpoints.
+Access Microsoft Azure AI advanced capabilities (Cognitive Services) using Python. A valid subscription to Azure is needed for your own endpoints:
 
-This repository uses virtual environments, CI pipelines (GitHub Actions), Docker, and Kubernetes as optional.
+ * Translator
+ * Computer Vision (pending)
+
+This repository uses virtual environments, CI pipelines (GitHub Actions), and containerization as optional.
 
 ## Installation
 
