@@ -131,7 +131,7 @@ docker run -p 5000:5000 ai-python-app
 
 ### 4.3 Pushing the image to your own Docker Hub
 
-Tag the Docker image:
+Tag the Docker image (don't forget to replace [username]!):
 
 ```bash
 docker tag ai-python-app:latest [username]/ai-python-app:latest
