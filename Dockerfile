@@ -15,13 +15,15 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 COPY . .
 
+# Set the FLASK_APP environment variable
+ENV FLASK_APP=app.py
+
 # Expose the port the app runs on:
 # 5000 for the Flask app (default)
 # 443 for the HTTPS
 # 80 for the HTTP
-EXPOSE 5000 443 80
+EXPOSE 80
 
 # Define the command to run the application
-#CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0:5000"]
-#CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0:443"]
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0:80"]
+#CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0:80"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=80"]

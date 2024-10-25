@@ -126,7 +126,8 @@ docker build -t ai-python-app .
 Run the image:
 
 ```bash
-docker run -p 80:80 ai-python-app
+docker run -it -p 80:80 ai-python-app
+# -it lets you stop it with Ctrl+C
 ```
 
 ### 4.3 Pushing the image to your own Docker Hub
