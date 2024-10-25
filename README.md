@@ -112,8 +112,8 @@ or:
 flask run
 ```
 
-This should run the web application on localhost (port 5000):  
-[http://127.0.0.1:5000/](http://127.0.0.1:5000/)
+This should run the web application on localhost:  
+[http://127.0.0.1/](http://127.0.0.1/)
 
 ### 4.2 Using Dockerfile
 
@@ -126,7 +126,7 @@ docker build -t ai-python-app .
 Run the image:
 
 ```bash
-docker run -p 5000:5000 ai-python-app
+docker run -p 80:80 ai-python-app
 ```
 
 ### 4.3 Pushing the image to your own Docker Hub
