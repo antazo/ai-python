@@ -68,7 +68,7 @@ pip install -r requirements.txt
 
 ## 3. Azure Portal
 
-This application uses a valid subscription to Azure Portal with Translator and other services. To be able to use your own endpoint, the information must be stored in a **.env** file:
+This application uses a valid subscription to Azure AI services to be able to use Translator, Vision and so on. Your endpoint information must be stored in a **.env** file:
 
 ```bash
 nano .env
