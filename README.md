@@ -109,7 +109,7 @@ py app.py
 or:
 
 ```bash
-flask run
+flask run -p 80
 ```
 
 This should run the web application on localhost:  
