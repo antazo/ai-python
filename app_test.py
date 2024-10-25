@@ -74,12 +74,12 @@ class TestGame(unittest.TestCase):
     def test_game(self):
         response = self.app.get('/game')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'/game', response.data)
+        self.assertIn(b'Game', response.data)
 
     def test_game_with_invalid_parameter(self):
         response = self.app.get('/game?choice=invalid')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'/game', response.data)
+        self.assertIn(b'Game', response.data)
 
 if __name__ == '__main__':
     unittest.main()
