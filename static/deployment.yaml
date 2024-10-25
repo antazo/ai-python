@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
       - name: ai-flask-app
-        image: ai-python-app:latest
+        image: antazo/ai-python-app:latest # Edit this line
         ports:
-        - containerPort: 5000
+        - containerPort: 80
         resources:
           limits:
             memory: "512Mi"

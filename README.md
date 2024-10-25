@@ -155,27 +155,36 @@ You can use the image from my Docker Hub for integration tests (the keys are not
 
 ### 4.4 Using Kubernetes (Minikube)
 
-Start K8s:
+Start K8s and login your Docker:
 
 ```bash
 minikube start --driver=docker
+docker login
 ```
 
-Build the Docker image inside Minikube:
+Point the shell to Minikube's docker-daemon before building the Docker image:
 
 ```bash
 eval $(minikube -p minikube docker-env)
-# if "eval" isn't working, you must be using CMD on Windows. In that case, do it manually, copy&paste.
-# You need to point the shell to minikube's docker-daemon before building the Docker image.
+```
+
+If "eval" isn't working, you must be using CMD on Windows. In that case, do it manually:.
+
+```powershell
+& minikube -p minikube docker-env --shell powershell | Invoke-Expression
+```
+
+Build the Docker image inside Minikube. Don't forget to login your Docker first:
+
+```bash
 docker build -t ai-python-app .
 ```
 
-Apply the Deployment and Service YAML files:
+Apply the Deployment and Service YAML files. Inside **deployment.yaml** you should point to your Docker image ("image: [username]/ai-python-app:latest"):
 
 ```bash
-kubectl apply -f static/deployment.yaml
+kubectl apply -f static/deployment.yaml # Edit this file before applying!
 kubectl apply -f static/service.yaml
-kubectl apply -f static/pod.yaml
 ```
 
 Access the Flask application:
@@ -187,9 +196,10 @@ minikube service ai-flask-app-service
 Troubleshoot:
 
 ```bash
-kubectl get pods
-kubectl describe pod ai-flask-app
-kubectl get services
+kubectl get pods # Get the list of pods
+kubectl describe pod ai-flask-app -n default 
+
+kubectl get services # Get the list of services
 kubectl describe service ai-flask-app-service
 ```
 

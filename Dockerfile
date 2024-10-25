@@ -19,9 +19,9 @@ COPY . .
 ENV FLASK_APP=app.py
 
 # Expose the port the app runs on:
-# 5000 for the Flask app (default)
-# 443 for the HTTPS
-# 80 for the HTTP
+#   5000 for the Flask app (default)
+#   443 for the HTTPS
+#   80 for the HTTP
 EXPOSE 80
 
 # Define the command to run the application
