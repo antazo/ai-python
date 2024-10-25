@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <style>
+        .choose {
+            text-align: center;
+            font-size: 36px;
+        }
+        .result {
+            text-align: center;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Game</h1>
+        <div class="choose">
+            <p>Choose:</p>
+            {% for key in choices %}
+                <p><a href="game?choice={{ key }}">{{ key }}</a></p>
+            {% endfor %}
+        </script>
+        <div class="result">
+            {% if choicePlayer %}
+            <p>Enemy chooses <b>{{ choiceEnemy }}</b>...</p>
+            <p>Yours is <b>{{ choicePlayer }}</b>: {{ result }}</p>
+            <button onclick="window.location.href='/game?choice={{ choicePlayer }}'">Play again?</button>
+            {% endif %}
+        </div>
+        <script>
+            gsap.from(".choose", {duration: 1, opacity: 0, y: -50});
+            gsap.from(".result", {duration: 1, opacity: 0, y: -50});
+            gsap.from(".result", {duration: 1, x: -100});
+            gsap.from(".result", {duration: 1, scale: 0});
+            gsap.from(".result", {duration: 1, rotation: 360});
+            gsap.from(".result", {duration: 1, y: -100, ease: "bounce"});
+        </script>
+    </div>
+</body>
+</html>
