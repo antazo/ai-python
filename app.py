@@ -78,6 +78,17 @@ def translator_post():
         target_language=target_language
     )
 
+@app.route('/computer_vision', methods=['GET'])
+def computer_vision():
+    return render_template('computer_vision.html')
+
+@app.route('/computer_vision', methods=['POST'])
+def computer_vision_post():
+    # Handle the POST request for computer vision
+    image = request.files['image']
+    # Process the image using a computer vision library or API
+    result = "Processed Image Result"  # Example result
+    return render_template('computer_vision.html', result=result)
 
 @app.route('/hello')
 def hello():
