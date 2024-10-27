@@ -86,6 +86,12 @@ def computer_vision():
 def computer_vision_post():
     # Handle the POST request for computer vision
     image = request.files['image']
+    
+    # Load the values from .env
+    key = os.environ['KEY']
+    endpoint = os.environ['ENDPOINT']
+    location = os.environ['LOCATION']
+
     # Process the image using a computer vision library or API
     result = "Processed Image Result"  # Example result
     return render_template('computer_vision.html', result=result)
