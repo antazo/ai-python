@@ -87,8 +87,8 @@ jobs:
           --cpu 1 \
           --memory 1 \
           --registry-login-server ${{ secrets.ACR_NAME }}.azurecr.io \
-          --registry-username ${{ secrets.ACR_USERNAME }} \
-          --registry-password ${{ secrets.ACR_PASSWORD }} \
+          --registry-username ${{ secrets.AZURE_CLIENT_ID }} \
+          --registry-password ${{ secrets.AZURE_CLIENT_SECRET }} \
           --ip-address Public \
           --dns-name-label aidemo \
           --ports 80
