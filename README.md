@@ -296,7 +296,7 @@ Create a role assignment (RBAC):
 ```powershell
 az ad sp create-for-rbac \
     --name "http://ai-python-sp" \
-    --role acrpush \
+    --role Contributor \
     --scopes /subscriptions/[AZURE_SUBSCRIPTION_ID]/resourceGroups/[AZURE_RESOURCE_GROUP]/providers/Microsoft.ContainerRegistry/registries/[ACR_NAME] \
     --sdk-auth > acr-credentials.json
 ```
