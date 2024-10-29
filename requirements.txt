@@ -2,4 +2,4 @@ flask
 flask-swagger-ui
 python-dotenv
 requests
-pytest
+azure-mgmt-compute

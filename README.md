@@ -51,7 +51,7 @@ py -3 -m venv my_venv
 This project is using:
 
 ```bash
-pip install flask flask-swagger-ui python-dotenv requests pytest
+pip install flask flask-swagger-ui python-dotenv requests azure-mgmt-compute
 ```
 
 Optionally, we can automate this process by adding the list of modules to **requirements.txt**. To create one with the current modules installed in our environment:
@@ -67,7 +67,7 @@ flask
 flask-swagger-ui
 python-dotenv
 requests
-pytest
+azure-mgmt-compute
 
 ```
 
