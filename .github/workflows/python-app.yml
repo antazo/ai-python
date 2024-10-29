@@ -51,18 +51,6 @@ jobs:
 
     # Add Azure Container Registry (ACR) to the workflow
 
-    - name: Azure CLI Action
-      uses: Azure/cli@v2.1.0
-      with:
-        # Specify the script here
-        inlineScript: |
-          az appservice plan create --name ai-python-appServicePlan \
-            --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
-            --sku FREE
-        # Azure CLI version to be used to execute the script. If not provided, latest version is used
-        # Specify the Azure CLI version to be used
-        azcliversion: '2.30.0' # optional, default is agentazcliversion
-
     - name: Log in to Azure
       uses: azure/login@v1
       with:
