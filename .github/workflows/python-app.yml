@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Python application
+name: Azure AI Python application
 
 on:
   push:
@@ -50,7 +50,7 @@ jobs:
         pytest
 
     # Add Azure Container Registry (ACR) to the workflow
-    
+
     - name: Azure CLI Action
       uses: Azure/cli@v2.1.0
       with:
@@ -58,4 +58,31 @@ jobs:
         #inlineScript: 
         # Azure CLI version to be used to execute the script. If not provided, latest version is used
         azcliversion: agentazcliversion # optional, default is agentazcliversion
-          
+
+    - name: Log in to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Log in to ACR
+      run: |
+        az acr login --name ${{ secrets.ACR_NAME }}
+
+    - name: Build and push Docker image
+      run: |
+        docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:${{ github.sha }} .
+        docker push ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:${{ github.sha }}
+
+    - name: Deploy to Azure Container Instances
+      run: |
+        az container create --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
+          --name ai-python-app \
+          --image ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:${{ github.sha }} \
+          --cpu 1 \
+          --memory 1 \
+          --registry-login-server ${{ secrets.ACR_NAME }}.azurecr.io \
+          --registry-username ${{ secrets.ACR_USERNAME }} \
+          --registry-password ${{ secrets.ACR_PASSWORD }} \
+          --ip-address Public \
+          --dns-name-label aidemo \
+          --ports 80
