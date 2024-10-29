@@ -62,14 +62,14 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:${{ github.sha }} .
-        docker push ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:${{ github.sha }}
+        docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:v1 .
+        docker push ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:v1
 
     - name: Deploy to Azure Container Instances
       run: |
         az container create --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
           --name ai-python-app \
-          --image ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:${{ github.sha }} \
+          --image ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:v1 \
           --cpu 1 \
           --memory 1 \
           --registry-login-server ${{ secrets.ACR_NAME }}.azurecr.io \
