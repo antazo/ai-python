@@ -266,7 +266,8 @@ az acr repository show-tags --name aipython --repository ai-python-app --output 
 Create the container. You will also need to check your Access Keys and privileges to be able to replace [Your Registry PASS]. The DNS label will be **aidemo**:
 
 ```powershell
-az container create --resource-group [Your Resource group] \
+az container create \
+    --resource-group [Your Resource group] \
     --name ai-python-app \
     --image aipython.azurecr.io/ai-python-app:v1 \
     --cpu 1 \
@@ -281,6 +282,30 @@ az container create --resource-group [Your Resource group] \
 
 Try it:
 [http://aidemo.northeurope.azurecontainer.io/](http://aidemo.northeurope.azurecontainer.io/)
+
+## ACR and GitHub Actions workflow
+
+First, We need to create the following secrets on our GitHub repository:
+
+* AZURE_CLIENT_ID: The client ID of your Azure service principal.
+* AZURE_CLIENT_SECRET: The client secret of your Azure service principal.
+* AZURE_TENANT_ID: The tenant ID of your Azure subscription.
+* AZURE_CREDENTIALS: Azure service principal credentials in JSON format.
+* AZURE_RESOURCE_GROUP: Name of your Azure resource group.
+* AZURE_SUBSCRIPTION_ID: Subscription ID of the Azure resource group.
+* ACR_NAME: Registry name
+* ACR_USERNAME: The registry admin username.
+* ACR_PASSWORD: The registry password.
+
+Create a role assignment (RBAC):
+
+```powershell
+az ad sp create-for-rbac \
+    --name "http://ai-python-sp" \
+    --role acrpull \
+    --scopes /subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ secrets.AZURE_RESOURCE_GROUP }}/providers/Microsoft.ContainerRegistry/registries/${{ secrets.ACR_NAME }} \
+    --sdk-auth
+```
 
 ## Resources
 
