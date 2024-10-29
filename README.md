@@ -301,7 +301,7 @@ az ad sp create-for-rbac \
     --sdk-auth > acr-credentials.json
 ```
 
-This will output a JSON with the rest of information needed for your secrets.
+This will output a JSON to the file **acr-credentials.json** with the rest of information needed for your secrets.
 
 ## Resources
 
