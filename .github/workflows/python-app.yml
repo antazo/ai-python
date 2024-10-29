@@ -60,12 +60,14 @@ jobs:
       run: |
         az acr login --name ${{ secrets.ACR_NAME }}
 
-    - name: Build and push image
+    - name: Update registry authentication to allow pushes
       uses: azure/docker-login@v1
       with:
         login-server: ${{ secrets.ACR_NAME }}.azurecr.io
         username: ${{ secrets.AZURE_CLIENT_ID }}
         password: ${{ secrets.AZURE_CLIENT_SECRET }}
+
+    - name: Build and push image
       run: |
         docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:v1 .
         docker push ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:v1
