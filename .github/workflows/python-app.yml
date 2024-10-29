@@ -60,9 +60,9 @@ jobs:
       run: |
         az acr login --name ${{ secrets.ACR_NAME }}
 
-        - name: Build Docker image
-          run: |
-            docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:v1 .
+    - name: Build Docker image
+      run: |
+        docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:v1 .
 
     - name: Check the image and tag
       run: |
