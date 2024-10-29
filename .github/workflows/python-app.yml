@@ -81,14 +81,4 @@ jobs:
 
     - name: Deploy to Azure Container Instances
       run: |
-        az container create --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
-          --name ai-python-app \
-          --image ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:v1 \
-          --cpu 1 \
-          --memory 1 \
-          --registry-login-server ${{ secrets.ACR_NAME }}.azurecr.io \
-          --registry-username ${{ secrets.ACR_USERNAME }} \
-          --registry-password ${{ secrets.ACR_PASSWORD }} \
-          --ip-address Public \
-          --dns-name-label aidemo \
-          --ports 80
+        az container create --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --name ai-python-app --image ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:v1 --cpu 1 --memory 1 --registry-login-server ${{ secrets.ACR_NAME }}.azurecr.io --registry-username ${{ secrets.ACR_USERNAME }} --registry-password ${{ secrets.ACR_PASSWORD }} --ip-address Public --dns-name-label aidemo --ports 80

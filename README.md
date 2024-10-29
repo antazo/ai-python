@@ -229,10 +229,10 @@ Log in to your Azure CLI:
 az login
 ```
 
-Create your ACR in your own resource group (replace [RESOURCE_GROUP]). My registry will be called **aipython**:
+Create your ACR in your own resource group (replace [AZURE_RESOURCE_GROUP]). My registry will be called **aipython**:
 
 ```powershell
-az acr create --resource-group [RESOURCE_GROUP] --name aipython --sku Basic
+az acr create --resource-group [AZURE_RESOURCE_GROUP] --name aipython --sku Basic
 ```
 
 Login to the ACR we just created:
@@ -268,21 +268,10 @@ az acr repository show-tags --name aipython --repository ai-python-app --output 
 # is it "v1"?
 ```
 
-Create the container. You will also need to check your Access Keys and privileges to be able to replace [Your Registry PASS]. The DNS label will be **aidemo**:
+Create the container. You will also need to check your Access Keys and privileges to be able to replace [ACR_PASSWORD]. The DNS label will be **aidemo**:
 
 ```powershell
-az container create \
-    --resource-group [RESOURCE_GROUP] \
-    --name ai-python-app \
-    --image aipython.azurecr.io/ai-python-app:v1 \
-    --cpu 1 \
-    --memory 1 \
-    --registry-login-server aipython.azurecr.io \
-    --registry-username aipython \
-    --registry-password [Your Registry PASS] \
-    --ip-address Public \
-    --dns-name-label aidemo \
-    --ports 80
+az container create --resource-group [AZURE_RESOURCE_GROUP] --name ai-python-app --image aipython.azurecr.io/ai-python-app:v1 --cpu 1 --memory 1 --registry-login-server aipython.azurecr.io --registry-username aipython --registry-password [ACR_PASSWORD] --ip-address Public --dns-name-label aidemo --ports 80
 ```
 
 Try it:
@@ -296,7 +285,6 @@ First, We need to create the following secrets on our GitHub repository:
 * AZURE_CLIENT_SECRET: The client secret of your Azure service principal.
 * AZURE_SUBSCRIPTION_ID: The subscription ID of your Azure service.
 * AZURE_TENANT_ID: The tenant ID of your Azure subscription.
-
 * AZURE_CREDENTIALS: Azure service principal credentials in JSON format.
 * AZURE_RESOURCE_GROUP: Name of your Azure resource group.
 * ACR_NAME: Registry name
@@ -309,7 +297,7 @@ Create a role assignment (RBAC):
 az ad sp create-for-rbac \
     --name "http://ai-python-sp" \
     --role acrpush \
-    --scopes /subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ secrets.AZURE_RESOURCE_GROUP }}/providers/Microsoft.ContainerRegistry/registries/${{ secrets.ACR_NAME }} \
+    --scopes /subscriptions/[AZURE_SUBSCRIPTION_ID]/resourceGroups/[AZURE_RESOURCE_GROUP]/providers/Microsoft.ContainerRegistry/registries/[ACR_NAME] \
     --sdk-auth > acr-credentials.json
 ```
 
