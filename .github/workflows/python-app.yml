@@ -60,9 +60,12 @@ jobs:
       run: |
         az acr login --name ${{ secrets.ACR_NAME }}
 
-    - name: Build and push Docker image
+    - name: Build Docker image
       run: |
         docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:v1 .
+
+    - name: Push Docker image
+      run: |
         docker push ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:v1
 
     - name: Deploy to Azure Container Instances
