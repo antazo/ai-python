@@ -2,7 +2,9 @@
 
 Access Microsoft Azure AI advanced capabilities (cognitive services) using Python. A valid subscription to Azure is needed for your own endpoints.
 
-This repository uses virtual environments, CI pipelines (GitHub Actions), and containerization as optional.
+The project uses virtual environments, CI pipelines, and containerization as optional.
+
+This repository is automatically deployed to an Azure Container Registry (ACR) through a GitHub Actions workflow.
 
 ## Overview
 
