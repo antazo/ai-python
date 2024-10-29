@@ -289,6 +289,7 @@ First, We need to create the following secrets on our GitHub repository:
 
 * AZURE_CLIENT_ID: The client ID of your Azure service principal.
 * AZURE_CLIENT_SECRET: The client secret of your Azure service principal.
+* AZURE_SUBSCRIPTION_ID: The subscription ID of your Azure service.
 * AZURE_TENANT_ID: The tenant ID of your Azure subscription.
 * AZURE_CREDENTIALS: Azure service principal credentials in JSON format.
 * AZURE_RESOURCE_GROUP: Name of your Azure resource group.
@@ -302,9 +303,11 @@ Create a role assignment (RBAC):
 az ad sp create-for-rbac \
     --name "http://ai-python-sp" \
     --role acrpull \
-    --scopes /subscriptions/${{ secrets.AZURE_TENANT_ID }}/resourceGroups/${{ secrets.AZURE_RESOURCE_GROUP }}/providers/Microsoft.ContainerRegistry/registries/${{ secrets.ACR_NAME }} \
-    --sdk-auth
+    --scopes /subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ secrets.AZURE_RESOURCE_GROUP }}/providers/Microsoft.ContainerRegistry/registries/${{ secrets.ACR_NAME }} \
+    --sdk-auth > acr-credentials.json
 ```
+
+This will output a JSON with the rest of information needed for your secrets.
 
 ## Resources
 
