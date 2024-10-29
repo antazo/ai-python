@@ -291,7 +291,7 @@ First, We need to create the following secrets on our GitHub repository:
 * ACR_USERNAME: The registry admin username.
 * ACR_PASSWORD: The registry password.
 
-Create a role assignment (RBAC):
+Create a role assignment (RBAC) to be able to pull and push as a **Contributor** (in other cases we would use **acrpull** or  **acrpush** for least privileges):
 
 ```powershell
 az ad sp create-for-rbac \
@@ -301,7 +301,7 @@ az ad sp create-for-rbac \
     --sdk-auth > acr-credentials.json
 ```
 
-This will output a JSON to the file **acr-credentials.json** with the rest of information needed for your secrets.
+This will output a JSON to the file **acr-credentials.json** with the rest of information needed for your secrets. To be specific, you will need this to update [AZURE_CLIENT_SECRET] and [AZURE_CREDENTIALS].
 
 ## Resources
 
