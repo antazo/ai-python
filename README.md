@@ -14,9 +14,9 @@ This repository uses virtual environments, CI pipelines (GitHub Actions), and co
   * [Using local Web Server](#using-local-web-server)
   * [Using Dockerfile](#using-dockerfile)
   * [Using Kubernetes (Minikube)](#using-kubernetes-minikube)
-* [Container registries](#container-registries)
-  * [Pushing the image to your own Docker Hub](#pushing-the-image-to-your-own-docker-hub)
-  * [Pushing the image to Azure Container Registry (ACR)](#pushing-the-image-to-azure-container-registry-acr)
+* [Pushing the images to container registries](#pushing-the-images-to-container-registries)
+  * [Docker Hub](#docker-hub)
+  * [Azure Container Registry (ACR)](#azure-container-registry-acr)
 
 ## Installation
 
@@ -141,6 +141,9 @@ docker run -it -p 80:80 ai-python-app
 # -it lets you stop it with Ctrl+C
 ```
 
+Try it:  
+[http://127.0.0.1/](http://127.0.0.1/)
+
 ### Using Kubernetes (Minikube)
 
 Start K8s and login your Docker:
@@ -168,7 +171,7 @@ Build the Docker image inside Minikube. Don't forget to login your Docker first:
 docker build -t ai-python-app .
 ```
 
-Apply the Deployment and Service YAML files. Inside **deployment.yaml** you should point to your Docker image ("image: [username]/ai-python-app:latest"):
+Apply the Deployment and Service YAML files. Inside **deployment.yaml** you should point to your Docker image ("image: [USERNAME]/ai-python-app:latest"):
 
 ```bash
 kubectl apply -f static/deployment.yaml # Edit this file before applying!
@@ -191,14 +194,14 @@ kubectl get services # Get the list of services
 kubectl describe service ai-flask-app-service
 ```
 
-## Container registries
+## Pushing the images to container registries
 
-### Pushing the image to your own Docker Hub
+### Docker Hub
 
-Tag the Docker image (don't forget to replace [username]!):
+Tag the Docker image (don't forget to replace [USERNAME]!):
 
 ```bash
-docker tag ai-python-app:latest [username]/ai-python-app:latest
+docker tag ai-python-app:latest [USERNAME]/ai-python-app:latest
 ```
 
 Log in to your Docker Hub:
@@ -210,13 +213,15 @@ docker login
 Push the Docker image:
 
 ```bash
-docker push [username]/ai-python-app:latest
+docker push [USERNAME]/ai-python-app:latest
 ```
 
 You can use the image from my Docker Hub for integration tests (the keys are not valid for E2E tests):
 [https://hub.docker.com/repository/docker/antazo/ai-python-app/general](https://hub.docker.com/repository/docker/antazo/ai-python-app/general)
 
-### Pushing the image to Azure Container Registry (ACR)
+### Azure Container Registry (ACR)
+
+This repository integrates ACR in the GitHub Actions workflow. All the following steps are already automated in the **python-app.yml** file:
 
 Log in to your Azure CLI:
 
@@ -224,10 +229,10 @@ Log in to your Azure CLI:
 az login
 ```
 
-Create your ACR in your own resource group (replace [Your Resource group]). My registry will be called **aipython**:
+Create your ACR in your own resource group (replace [RESOURCE_GROUP]). My registry will be called **aipython**:
 
 ```powershell
-az acr create --resource-group [Your Resource group] --name aipython --sku Basic
+az acr create --resource-group [RESOURCE_GROUP] --name aipython --sku Basic
 ```
 
 Login to the ACR we just created:
@@ -236,19 +241,19 @@ Login to the ACR we just created:
 az acr login --name aipython
 ```
 
-Show the ACR login server (replace [Your ACR Login Server]), and then use it to create a tag:
+Show the ACR login server, and then use it to create a tag:
 
 ```powershell
 az acr show --name aipython --query loginServer --output table
 ```
 
-In my case it's **aipython.azurecr.io**:
+In my case, it's **aipython.azurecr.io**:
 
 ```powershell
 docker tag ai-python-app aipython.azurecr.io/ai-python-app:v1
 ```
 
-Push the image to the ACR:
+Push the image to the ACR (this step is not needed in the YAML file):
 
 ```powershell
 docker push aipython.azurecr.io/ai-python-app:v1
@@ -267,7 +272,7 @@ Create the container. You will also need to check your Access Keys and privilege
 
 ```powershell
 az container create \
-    --resource-group [Your Resource group] \
+    --resource-group [RESOURCE_GROUP] \
     --name ai-python-app \
     --image aipython.azurecr.io/ai-python-app:v1 \
     --cpu 1 \
