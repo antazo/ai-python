@@ -60,9 +60,16 @@ jobs:
       run: |
         az acr login --name ${{ secrets.ACR_NAME }}
 
-    - name: Build Docker image
+        - name: Build Docker image
+          run: |
+            docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:v1 .
+
+    - name: Check the image and tag
       run: |
-        docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/ai-python-app:v1 .
+        az acr repository list --name ${{ secrets.ACR_NAME }} --output table
+        # is it "ai-python-app"?
+        az acr repository show-tags --name ${{ secrets.ACR_NAME }} --repository ai-python-app --output table
+        # is it "v1"?
 
     - name: Deploy to Azure Container Instances
       run: |
