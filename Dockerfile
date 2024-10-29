@@ -1,13 +1,16 @@
 # syntax=docker/dockerfile:1
 
 # Use the official Python image from the Docker Hub
-FROM python:3.9-slim
+FROM python:latest
 
 # Set the working directory in the container
 WORKDIR /ai-python-app
 
 # Copy the requirements file into the container
 COPY requirements.txt .
+
+# Ensure that our container doesn't go to sleep
+#CMD tail -f /dev/null
 
 # Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
@@ -19,11 +22,9 @@ COPY . .
 ENV FLASK_APP=app.py
 
 # Expose the port the app runs on:
-#   5000 for the Flask app (default)
-#   443 for the HTTPS
-#   80 for the HTTP
 EXPOSE 80
+EXPOSE 443
+EXPOSE 5000
 
 # Define the command to run the application
-#CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0:80"]
 CMD ["flask", "run", "--host=0.0.0.0", "--port=80"]
