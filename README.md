@@ -258,10 +258,12 @@ List the repository, and the tags:
 
 ```powershell
 az acr repository list --name aipython --output table
+# is it "ai-python-app"?
 az acr repository show-tags --name aipython --repository ai-python-app --output table
+# is it "v1"?
 ```
 
-Create the container. You will also need to check your access keys and privileges to replace [Your Registry PASS]. The DNS label will be **aidemo**:
+Create the container. You will also need to check your Access Keys and privileges to be able to replace [Your Registry PASS]. The DNS label will be **aidemo**:
 
 ```powershell
 az container create --resource-group [Your Resource group] \
