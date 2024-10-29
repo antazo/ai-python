@@ -48,3 +48,14 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+
+    # Add Azure Container Registry (ACR) to the workflow
+    
+    - name: Azure CLI Action
+      uses: Azure/cli@v2.1.0
+      with:
+        # Specify the script here
+        #inlineScript: 
+        # Azure CLI version to be used to execute the script. If not provided, latest version is used
+        azcliversion: agentazcliversion # optional, default is agentazcliversion
+          
