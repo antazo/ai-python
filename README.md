@@ -1,13 +1,24 @@
 # Azure AI with Python
 
-Access Microsoft Azure AI advanced capabilities (Cognitive Services) using Python. A valid subscription to Azure is needed for your own endpoints:
-
-* Translator
-* Computer Vision (pending)
+Access Microsoft Azure AI advanced capabilities (cognitive services) using Python. A valid subscription to Azure is needed for your own endpoints.
 
 This repository uses virtual environments, CI pipelines (GitHub Actions), and containerization as optional.
 
-## 1. Installation
+## Overview
+
+* [Installation](#installation)
+  * [Virtual Environment (optional)](#virtual-environment-optional)
+* [Libraries](#libraries)
+* [Azure Portal](#azure-portal)
+* [Deployment](#deployment)
+  * [Using local Web Server](#using-local-web-server)
+  * [Using Dockerfile](#using-dockerfile)
+  * [Using Kubernetes (Minikube)](#using-kubernetes-minikube)
+* [Container registries](#container-registries)
+  * [Pushing the image to your own Docker Hub](#pushing-the-image-to-your-own-docker-hub)
+  * [Pushing the image to Azure Container Registry (ACR)](#pushing-the-image-to-azure-container-registry-acr)
+
+## Installation
 
 Clone (or fork) this git repository:
 
@@ -16,7 +27,7 @@ git clone https://github.com/antazo/ai-python.git
 cd ai-python
 ```
 
-### 1.1 Virtual Environment (optional)
+### Virtual Environment (optional)
 
 If we want to use a virtual environment, we need to invoke the **venv** module, and activate it. In my case, I'm calling it **my_env**:
 
@@ -35,7 +46,7 @@ py -3 -m venv my_venv
 .\.my_venv\Scripts\activate
 ```
 
-## 2. Libraries
+## Libraries
 
 This project is using:
 
@@ -66,7 +77,7 @@ To install them:
 pip install -r requirements.txt
 ```
 
-## 3. Azure Portal
+## Azure Portal
 
 This application uses a valid subscription to Azure AI services to be able to use Translator, Vision and so on. Your endpoint information must be stored in a **.env** file:
 
@@ -82,9 +93,9 @@ ENDPOINT=your_endpoint
 LOCATION=your_location
 ```
 
-## 4. Deployment
+## Deployment
 
-### 4.1 Using local Web Server
+### Using local Web Server
 
 Set the environment variables.
 
@@ -115,7 +126,7 @@ flask run -p 80
 This should run the web application on localhost:  
 [http://127.0.0.1/](http://127.0.0.1/)
 
-### 4.2 Using Dockerfile
+### Using Dockerfile
 
 To containerize this application, build the Docker image by using the Dockerfile included:
 
@@ -130,30 +141,7 @@ docker run -it -p 80:80 ai-python-app
 # -it lets you stop it with Ctrl+C
 ```
 
-### 4.3 Pushing the image to your own Docker Hub
-
-Tag the Docker image (don't forget to replace [username]!):
-
-```bash
-docker tag ai-python-app:latest [username]/ai-python-app:latest
-```
-
-Log in to your Docker Hub:
-
-```bash
-docker login
-```
-
-Push the Docker image:
-
-```bash
-docker push [username]/ai-python-app:latest
-```
-
-You can use the image from my Docker Hub for integration tests (the keys are not valid for E2E tests):
-[https://hub.docker.com/repository/docker/antazo/ai-python-app/general](https://hub.docker.com/repository/docker/antazo/ai-python-app/general)
-
-### 4.4 Using Kubernetes (Minikube)
+### Using Kubernetes (Minikube)
 
 Start K8s and login your Docker:
 
@@ -203,7 +191,32 @@ kubectl get services # Get the list of services
 kubectl describe service ai-flask-app-service
 ```
 
-### 4.5 Pushing the image to Azure Container Registry (ACR)
+## Container registries
+
+### Pushing the image to your own Docker Hub
+
+Tag the Docker image (don't forget to replace [username]!):
+
+```bash
+docker tag ai-python-app:latest [username]/ai-python-app:latest
+```
+
+Log in to your Docker Hub:
+
+```bash
+docker login
+```
+
+Push the Docker image:
+
+```bash
+docker push [username]/ai-python-app:latest
+```
+
+You can use the image from my Docker Hub for integration tests (the keys are not valid for E2E tests):
+[https://hub.docker.com/repository/docker/antazo/ai-python-app/general](https://hub.docker.com/repository/docker/antazo/ai-python-app/general)
+
+### Pushing the image to Azure Container Registry (ACR)
 
 Log in to your Azure CLI:
 
@@ -248,10 +261,20 @@ az acr repository list --name aipython --output table
 az acr repository show-tags --name aipython --repository ai-python-app --output table
 ```
 
-Create the container. You will also need to check your access keys and privilages to replace [Your Service Principal PASS]. The DNS label will be **aidemo**:
+Create the container. You will also need to check your access keys and privileges to replace [Your Registry PASS]. The DNS label will be **aidemo**:
 
 ```powershell
-az container create --resource-group [Your Resource group] --name ai-python-app --image aipython.azurecr.io/ai-python-app:v1 --cpu 1 --memory 1 --registry-login-server aipython.azurecr.io --registry-username aipython --registry-password [Your Service Principal PASS] --ip-address Public --dns-name-label aidemo --ports 80
+az container create --resource-group [Your Resource group] \
+    --name ai-python-app \
+    --image aipython.azurecr.io/ai-python-app:v1 \
+    --cpu 1 \
+    --memory 1 \
+    --registry-login-server aipython.azurecr.io \
+    --registry-username aipython \
+    --registry-password [Your Registry PASS] \
+    --ip-address Public \
+    --dns-name-label aidemo \
+    --ports 80
 ```
 
 Try it:
