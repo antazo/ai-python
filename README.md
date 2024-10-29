@@ -211,7 +211,7 @@ Log in to your Azure CLI:
 az login
 ```
 
-Create your ACR in your own resource group (replace [Your Resource group]):
+Create your ACR in your own resource group (replace [Your Resource group]). My registry will be called **aipython**:
 
 ```powershell
 az acr create --resource-group [Your Resource group] --name aipython --sku Basic
@@ -232,13 +232,13 @@ az acr show --name aipython --query loginServer --output table
 In my case it's **aipython.azurecr.io**:
 
 ```powershell
-docker tag ai-python-app [Your ACR Login Server]/ai-python-app:v1
+docker tag ai-python-app aipython.azurecr.io/ai-python-app:v1
 ```
 
 Push the image to the ACR:
 
 ```powershell
-docker push [Your ACR Login Server]/ai-python-app:v1
+docker push aipython.azurecr.io/ai-python-app:v1
 ```
 
 List the repository, and the tags:
@@ -248,11 +248,14 @@ az acr repository list --name aipython --output table
 az acr repository show-tags --name aipython --repository ai-python-app --output table
 ```
 
-Create the container. Replace [Your Resource group] and [Your ACR Login Server]. You will also need to check your access keys for [Your Service Principal ID] and [Your Service Principal PASS]. The DNS label will be **aidemo**:
+Create the container. You will also need to check your access keys and privilages to replace [Your Service Principal PASS]. The DNS label will be **aidemo**:
 
 ```powershell
-az container create --resource-group [Your Resource group] --name ai-python-app --image [Your ACR Login Server]/ai-python-app:v1 --cpu 1 --memory 1 --registry-login-server [Your ACR Login Server] --registry-username [Your Service Principal ID] --registry-password [Your Service Principal PASS] --ip-address Public --dns-name-label aidemo --ports 80
+az container create --resource-group [Your Resource group] --name ai-python-app --image aipython.azurecr.io/ai-python-app:v1 --cpu 1 --memory 1 --registry-login-server aipython.azurecr.io --registry-username aipython --registry-password [Your Service Principal PASS] --ip-address Public --dns-name-label aidemo --ports 80
 ```
+
+Try it:
+[http://aidemo.northeurope.azurecontainer.io/](http://aidemo.northeurope.azurecontainer.io/)
 
 ## Resources
 
