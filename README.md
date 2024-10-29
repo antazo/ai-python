@@ -296,6 +296,7 @@ First, We need to create the following secrets on our GitHub repository:
 * AZURE_CLIENT_SECRET: The client secret of your Azure service principal.
 * AZURE_SUBSCRIPTION_ID: The subscription ID of your Azure service.
 * AZURE_TENANT_ID: The tenant ID of your Azure subscription.
+
 * AZURE_CREDENTIALS: Azure service principal credentials in JSON format.
 * AZURE_RESOURCE_GROUP: Name of your Azure resource group.
 * ACR_NAME: Registry name
