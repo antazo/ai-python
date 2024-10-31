@@ -173,7 +173,7 @@ Build the Docker image inside Minikube. Don't forget to login your Docker first:
 docker build -t ai-python-app .
 ```
 
-Apply the Deployment and Service YAML files. Inside **deployment.yaml** you should point to your Docker image ("image: [USERNAME]/ai-python-app:latest"):
+Apply the Deployment and Service YAML files. Inside **deployment.yaml** you should point to your Docker image ("image: [DOCKER_USERNAME]/ai-python-app:latest"):
 
 ```bash
 kubectl apply -f static/deployment.yaml # Edit this file before applying!
@@ -200,10 +200,10 @@ kubectl describe service ai-flask-app-service
 
 ### Docker Hub
 
-Tag the Docker image (don't forget to replace [USERNAME]!):
+Tag the Docker image (don't forget to replace [DOCKER_USERNAME]!):
 
 ```bash
-docker tag ai-python-app:latest [USERNAME]/ai-python-app:latest
+docker tag ai-python-app:latest [DOCKER_USERNAME]/ai-python-app:latest
 ```
 
 Log in to your Docker Hub:
@@ -215,7 +215,7 @@ docker login
 Push the Docker image:
 
 ```bash
-docker push [USERNAME]/ai-python-app:latest
+docker push [DOCKER_USERNAME]/ai-python-app:latest
 ```
 
 You can use the image from my Docker Hub for integration tests (the keys are not valid for E2E tests):
