@@ -19,6 +19,9 @@ This repository is automatically deployed to an Azure Container Registry (ACR) t
 * [Pushing the images to container registries](#pushing-the-images-to-container-registries)
   * [Docker Hub](#docker-hub)
   * [Azure Container Registry (ACR)](#azure-container-registry-acr)
+* [Container registries and GitHub Actions workflow](#container-registries-and-github-actions-workflow)
+  * [CI Docker Hub](#ci-docker-hub)
+  * [CI Azure Container Registry (ACR)](#ci-azure-container-registry-acr)
 
 ## Installation
 
@@ -279,7 +282,18 @@ az container create --resource-group [AZURE_RESOURCE_GROUP] --name ai-python-app
 Try it:
 [http://aidemo.northeurope.azurecontainer.io/](http://aidemo.northeurope.azurecontainer.io/)
 
-## ACR and GitHub Actions workflow
+## Container registries and GitHub Actions workflow
+
+### CI Docker Hub
+
+All you need to do is add your Docker credentials to secrets:
+
+* DOCKER_USERNAME
+* DOCKER_PASSWORD
+
+Now, enable the workflow.
+
+### CI Azure Container Registry (ACR)
 
 First, We need to create the following secrets on our GitHub repository:
 
