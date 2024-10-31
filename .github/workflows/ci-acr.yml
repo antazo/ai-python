@@ -1,6 +1,6 @@
 # Add Azure Container Registry (ACR) to the workflow
     
-name: Azure Container Registry (ACR)
+name: CI Azure Container Registry (ACR)
 
 on:
   push:
