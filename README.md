@@ -4,7 +4,7 @@ Access Microsoft Azure AI advanced capabilities (cognitive services) using Pytho
 
 The project uses virtual environments, CI pipelines, and containerization as optional.
 
-This repository is automatically deployed to an Azure Container Registry (ACR) through a GitHub Actions workflow.
+This repository is automatically deployed to container registries (Docker Hub and ACR) through GitHub Actions workflows.
 
 ## Overview
 
