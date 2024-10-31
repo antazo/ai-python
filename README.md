@@ -295,15 +295,9 @@ Now, enable the workflow.
 
 ### CI Azure Container Registry (ACR)
 
-First, We need to create the following secrets on our GitHub repository:
+First, add these information to your secrets:
 
-* AZURE_CLIENT_ID: The client ID of your Azure service principal.
-* AZURE_CLIENT_SECRET: The client secret of your Azure service principal.
-* AZURE_SUBSCRIPTION_ID: The subscription ID of your Azure service.
-* AZURE_TENANT_ID: The tenant ID of your Azure subscription.
-* AZURE_CREDENTIALS: Azure service principal credentials in JSON format.
 * AZURE_RESOURCE_GROUP: Name of your Azure resource group.
-* ACR_NAME: Registry name
 * ACR_USERNAME: The registry admin username.
 * ACR_PASSWORD: The registry password.
 
@@ -313,11 +307,17 @@ Create a role assignment (RBAC) to be able to pull and push as a **Contributor**
 az ad sp create-for-rbac \
     --name "http://ai-python-sp" \
     --role Contributor \
-    --scopes /subscriptions/[AZURE_SUBSCRIPTION_ID]/resourceGroups/[AZURE_RESOURCE_GROUP]/providers/Microsoft.ContainerRegistry/registries/[ACR_NAME] \
+    --scopes /subscriptions/[AZURE_SUBSCRIPTION_ID]/resourceGroups/[AZURE_RESOURCE_GROUP]/providers/Microsoft.ContainerRegistry/registries/aipython \
     --sdk-auth > acr-credentials.json
 ```
 
-This will output a JSON to the file **acr-credentials.json** with the rest of information needed for your secrets. To be specific, you will need this to update [AZURE_CLIENT_SECRET] and [AZURE_CREDENTIALS].
+This will output a JSON to the file **acr-credentials.json** with the rest of information needed for your secrets. Add them to make the workflow work:
+
+* AZURE_CLIENT_ID: The client ID of your Azure service principal.
+* AZURE_CLIENT_SECRET: The client secret of your Azure service principal.
+* AZURE_SUBSCRIPTION_ID: The subscription ID of your Azure service.
+* ~~AZURE_TENANT_ID: The tenant ID of your Azure subscription.~~
+* AZURE_CREDENTIALS: Azure service principal credentials in JSON format (**acr-credentials.json**).
 
 ## Resources
 
