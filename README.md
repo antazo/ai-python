@@ -315,7 +315,7 @@ This will output a JSON to the file **acr-credentials.json** with the rest of in
 
 * AZURE_CLIENT_ID: The client ID of your Azure service principal.
 * AZURE_CLIENT_SECRET: The client secret of your Azure service principal.
-* AZURE_SUBSCRIPTION_ID: The subscription ID of your Azure service.
+* ~~AZURE_SUBSCRIPTION_ID: The subscription ID of your Azure service.~~
 * ~~AZURE_TENANT_ID: The tenant ID of your Azure subscription.~~
 * AZURE_CREDENTIALS: Azure service principal credentials in JSON format (**acr-credentials.json**).
 
