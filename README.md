@@ -1,10 +1,10 @@
-# Azure AI with Python
+# Azure AI with Python (Cognitive Services)
 
-Access Microsoft Azure AI advanced capabilities (cognitive services) using Python. A valid subscription to Azure is needed for your own endpoints.
+Harness Microsoft Azure AI advanced capabilities in a Pythonian way. A valid subscription to Azure is needed for your own endpoints. The project uses virtual environments, continuous integration pipelines, and containerization as optional. This repository is automatically deployed to container registries (Docker Hub and ACR) through GitHub Actions.
 
-The project uses virtual environments, CI pipelines, and containerization as optional.
-
-This repository is automatically deployed to container registries (Docker Hub and ACR) through GitHub Actions workflows.
+Cognitive services used (so far):
+* Translator: Neural Machine Translation (NMT).
+* Computer Vision: Convolutional Neural Networks (CNN).
 
 ## Overview
 
