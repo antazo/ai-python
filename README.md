@@ -6,7 +6,7 @@ Cognitive services used (so far):
 * Translator: Neural Machine Translation (NMT).
 * Computer Vision: Convolutional Neural Networks (CNN).
 
-Technologies used: Python, Flask, Pytest, unittest, Selenium, GSAP, Docker, Minikube.
+Technologies used: Python, Flask, Pytest, unittest, Selenium, Swagger, GSAP, Docker, Minikube.
 
 ## Overview
 
