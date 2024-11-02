@@ -4,9 +4,8 @@ Harness Microsoft Azure AI advanced capabilities in a Pythonian way. A valid sub
 
 Cognitive services used (so far):
 
-* Translator.
-* Computer Vision.
-* Face.
+* Neural Machine Translation (NMT): Translator.
+* Convolutional Neural Networks (CNN): Computer Vision, Face.
 
 Technologies used: Python, Flask, Pytest, unittest, Selenium, Swagger, GSAP, Docker, Minikube.
 
