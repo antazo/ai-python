@@ -22,6 +22,9 @@ This repository is automatically deployed to container registries (Docker Hub an
 * [Container registries and GitHub Actions workflow](#container-registries-and-github-actions-workflow)
   * [CI Docker Hub](#ci-docker-hub)
   * [CI Azure Container Registry (ACR)](#ci-azure-container-registry-acr)
+* [Resources](#resources)
+  * [Azure](#azure)
+  * [Azure AI](#azure-ai)
 
 ## Installation
 
@@ -84,7 +87,7 @@ pip install -r requirements.txt
 
 ## Azure Portal
 
-This application uses a valid subscription to Azure AI services to be able to use Translator, Vision and so on. Your endpoint information must be stored in a **.env** file:
+This application uses a valid subscription to Azure AI Services and Cognitive APIs to be able to use Language, Vision (Computer Vision, Custom Vision, Face), Decision, Speech, Metrics Advisor, and Document Intelligence. Your Keys and Endpoints information must be stored in a **.env** file:
 
 ```bash
 nano .env
@@ -93,9 +96,12 @@ nano .env
 Save your key-values like this:
 
 ```plaintext
-KEY=your_key
-ENDPOINT=your_endpoint
-LOCATION=your_location
+TRANSLATOR_KEY=your_key
+TRANSLATOR_ENDPOINT=your_endpoint
+TRANSLATOR_LOCATION=your_location
+VISION_KEY=your_key
+VISION_ENDPOINT=your_endpoint
+VISION_LOCATION=your_location
 ```
 
 ## Deployment
@@ -146,8 +152,9 @@ docker run -it -p 80:80 ai-python-app
 # -it lets you stop it with Ctrl+C
 ```
 
-Try it:  
-[http://127.0.0.1/](http://127.0.0.1/)
+Try it:
+
+<http://127.0.0.1/>
 
 ### Using Kubernetes (Minikube)
 
@@ -280,7 +287,8 @@ az container create --resource-group [AZURE_RESOURCE_GROUP] --name ai-python-app
 ```
 
 Try it:
-[http://aidemo.northeurope.azurecontainer.io/](http://aidemo.northeurope.azurecontainer.io/)
+
+<http://aidemo.northeurope.azurecontainer.io/>
 
 ## Container registries and GitHub Actions workflow
 
@@ -321,24 +329,36 @@ This will output a JSON to the file **acr-credentials.json** with the rest of in
 
 ## Resources
 
-### Python (Spanish)
+### Azure
 
-1. Python para principiantes
+[Create a container image for deployment to Azure Container Instances](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app)
 
-    * <https://learn.microsoft.com/es-es/training/paths/beginner-python/>
+[Deploy a container instance in Azure using the Azure portal](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-portal)
 
-2. Compilación de aplicaciones reales con Python
+[Getting started with Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started)
 
-    * <https://learn.microsoft.com/es-es/training/paths/python-language/>
+[Create an Azure storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal)
 
-3. Uso de conceptos básicos de Python para resolver misterios y buscar respuestas
+[Create a single database - Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/single-database-create-quickstart?view=azuresql&tabs=azure-portal)
 
-    * <https://learn.microsoft.com/es-es/training/paths/python-partnership/>
+[Use the Azure portal to create a virtual network](https://learn.microsoft.com/en-us/azure/virtual-network/quick-create-portal)
 
-4. Rol de Python en la exploración espacial
+[Create a Windows virtual machine in the Azure portal](https://learn.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-portal)
 
-    * <https://learn.microsoft.com/es-es/training/paths/introduction-python-space-exploration-nasa/>
+[Host a web application with Azure App Service](https://learn.microsoft.com/en-us/training/modules/host-a-web-app-with-azure-app-service/)
 
-5. Explore el espacio con Python y Visual Studio Code (inspirado la película de Netflix Más allá de la luna)
+[Deploy and run a containerized web app with Azure App Service](https://learn.microsoft.com/en-us/training/modules/deploy-run-container-app-service/)
 
-    * <https://learn.microsoft.com/es-es/training/paths/explore-space-using-python/>
+### Azure AI
+
+[Lab Environment Setup](https://microsoftlearning.github.io/AI-102-AIEngineer/Instructions/00-setup.html)
+
+[Azure AI Vision documentation](https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/)
+
+[Create computer vision solutions with Azure AI Vision](https://learn.microsoft.com/en-us/training/paths/create-computer-vision-solutions-azure-ai/)
+
+[Create Translator service](https://learn.microsoft.com/en-us/training/modules/python-flask-build-ai-web-app/5-exercise-create-translator-service)
+
+[Lab 01 - Machine Learning: Explore Automated Machine Learning in Azure Machine Learning](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/01-machine-learning.html)
+
+[Lab 02 - Content Safety: Explore Azure AI Services](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/02-content-safety.html)

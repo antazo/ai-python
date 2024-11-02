@@ -40,8 +40,8 @@ def translator_post():
     target_language = request.form['language']
 
     # Load the values from .env
-    key = os.environ['KEY']
-    endpoint = os.environ['ENDPOINT']
+    key = os.environ['TRANSLATOR_KEY']
+    endpoint = os.environ['TRANSLATOR_ENDPOINT']
     location = os.environ['LOCATION']
 
     # Indicate that we want to translate and the API version (3.0) and the target language
@@ -67,12 +67,22 @@ def translator_post():
     # Retrieve the JSON response
     translator_response = translator_request.json()
     # Retrieve the translation
-    translated_text = translator_response[0]['translations'][0]['text']
+    try:
+        translated_text = translator_response[0]['translations'][0]['text']
+    except requests.exceptions.RequestException as e:
+        # Handle any request exceptions
+        translated_text = f"An error occurred, check your Keys and Endpoints: {e}"
+    except (KeyError, IndexError) as e:
+        # Handle any errors in parsing the JSON response
+        translated_text = f"An error occurred while parsing the response, check your Keys and Endpoints: {e}"
+    except Exception as e:
+        # Handle any other exceptions
+        translated_text = f"An unexpected error occurred: {e}"
 
     # Call render template, passing the translated text,
     # original text, and target language to the template
     return render_template(
-        'results.html',
+        'translator_results.html',
         translated_text=translated_text,
         original_text=original_text,
         target_language=target_language
@@ -84,18 +94,103 @@ def computer_vision():
 
 @app.route('/computer_vision', methods=['POST'])
 def computer_vision_post():
-    # Handle the POST request for computer vision
+    # Read the image from the form
     image = request.files['image']
+
+    # Load the values from environment variables
+    key = os.environ.get('VISION_KEY')
+    endpoint = os.environ.get('VISION_ENDPOINT')
+
+    # Indicate that we want to analyze the image and the API version (3.2)
+    path = '/vision/v3.2/analyze'
+    # Add the visual features parameter
+    visual_features = 'Categories,Description,Color'
+    # Create the full URL
+    constructed_url = f"{endpoint}{path}?visualFeatures={visual_features}"
+
+    # Set up the header information, which includes our subscription key
+    headers = {
+        'Ocp-Apim-Subscription-Key': key,
+        'Content-Type': 'application/octet-stream'
+    }
+
+    try:
+        # Make the request
+        response = requests.post(constructed_url, headers=headers, data=image.read())
+        response.raise_for_status()  # Raise an exception for HTTP errors
+
+        # Parse the JSON response
+        vision_response = response.json()
+        description = vision_response['description']['captions'][0]['text']
+    except requests.exceptions.RequestException as e:
+        # Handle any request exceptions
+        description = f"An error occurred, check your Keys and Endpoints: {e}"
+    except (KeyError, IndexError) as e:
+        # Handle any errors in parsing the JSON response
+        description = f"An error occurred while parsing the response, check your Keys and Endpoints: {e}"
+    except Exception as e:
+        # Handle any other exceptions
+        description = f"An unexpected error occurred: {e}"
+
+    return render_template('computer_vision.html', description=description)
+
+@app.route('/face', methods=['GET'])
+def face():
+    return render_template('face.html')
+
+@app.route('/face', methods=['POST'])
+def face_post():
+    # Read the image from the form
+    image = request.files['image']
+
+    # Load the values from environment variables
+    key = os.environ.get('FACE_KEY')
+    endpoint = os.environ.get('FACE_ENDPOINT')
+
+    # Indicate that we want to analyze the image and the API version (v1.0)
+    path = '/face/v1.0/detect'
+    # Add the parameters for face detection
+    params = {
+        'returnFaceId': 'true',
+        'returnFaceLandmarks': 'false',
+        'returnFaceAttributes': 'age,gender,smile,facialHair,glasses,emotion'
+    }
+    # Create the full URL
+    constructed_url = endpoint + path
+
+    # Set up the header information, which includes our subscription key
+    headers = {
+        'Ocp-Apim-Subscription-Key': key,
+        'Content-Type': 'application/octet-stream'
+    }
+
+    try:
+        # Make the request
+        response = requests.post(constructed_url, headers=headers, params=params, data=image.read())
+        response.raise_for_status()  # Raise an exception for HTTP errors
+
+        # Parse the JSON response
+        face_response = response.json()
+        if face_response:
+            description = f"Detected {len(face_response)} face(s)."
+            for face in face_response:
+                attributes = face['faceAttributes']
+                description += f"\n- Age: {attributes['age']}, Gender: {attributes['gender']}, Smile: {attributes['smile']}, Emotion: {attributes['emotion']}"
+        else:
+            description = "No faces detected."
+    except requests.exceptions.RequestException as e:
+        # Handle any request exceptions
+        description = f"An error occurred, check your Keys and Endpoints. The resource you are trying to call has limited access, or must be approved to use that capability: {e}"
+    except (KeyError, IndexError) as e:
+        # Handle any errors in parsing the JSON response
+        description = f"An error occurred while parsing the response, check your Keys and Endpoints. The resource you are trying to call has limited access, or must be approved to use that capability: {e}"
+    except Exception as e:
+        # Handle any other exceptions
+        description = f"An unexpected error occurred: {e}"
+
+    return render_template('face.html', description=description)
+
     
-    # Load the values from .env
-    key = os.environ['KEY']
-    endpoint = os.environ['ENDPOINT']
-    location = os.environ['LOCATION']
-
-    # Process the image using a computer vision library or API
-    result = "Processed Image Result"  # Example result
-    return render_template('computer_vision.html', result=result)
-
 @app.route('/hello')
 def hello():
     name = request.args.get('name', 'Alex')

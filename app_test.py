@@ -81,5 +81,25 @@ class TestGame(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Game', response.data)
 
+class TestCognitiveServices(unittest.TestCase):
+    def setUp(self):
+        self.app = app.test_client()
+        self.app.testing = True
+
+    def test_translator(self):
+        response = self.app.get('/translator')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Translator', response.data)
+
+    def test_computer_vision(self):
+        response = self.app.get('/computer_vision')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Computer Vision', response.data)
+
+    def test_face(self):
+        response = self.app.get('/face')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'Face', response.data)
+
 if __name__ == '__main__':
     unittest.main()
