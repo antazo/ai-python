@@ -3,8 +3,10 @@
 Harness Microsoft Azure AI advanced capabilities in a Pythonian way. A valid subscription to Azure is needed for your own endpoints. The project uses virtual environments, continuous integration pipelines, and containerization as optional. This repository is automatically deployed to container registries (Docker Hub and ACR) through GitHub Actions.
 
 Cognitive services used (so far):
-* Translator: Neural Machine Translation (NMT).
-* Computer Vision: Convolutional Neural Networks (CNN).
+
+* Translator.
+* Computer Vision.
+* Face.
 
 Technologies used: Python, Flask, Pytest, unittest, Selenium, Swagger, GSAP, Docker, Minikube.
 
