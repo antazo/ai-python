@@ -1,6 +1,6 @@
 # Azure AI with Python (Cognitive Services)
 
-Harness Microsoft Azure AI advanced capabilities in a Pythonian way. A valid subscription to Azure is needed for your own endpoints. The project uses virtual environments, continuous integration pipelines, and containerization as optional. This repository is automatically deployed to container registries (Docker Hub and ACR) through GitHub Actions.
+Harness Azure AI advanced capabilities in a Pythonian way. A valid subscription is needed for your own endpoints. The project uses virtual environments, continuous integration pipelines, and containerization as optional. This repository is automatically deployed to container registries (Docker Hub and ACR) through GitHub Actions.
 
 Cognitive services used (so far):
 
@@ -13,7 +13,7 @@ Technologies used: Python, Flask, Pytest, unittest, Selenium, Swagger, GSAP, Doc
 
 * [Installation](#installation)
   * [Virtual Environment (optional)](#virtual-environment-optional)
-* [Libraries](#libraries)
+  * [Libraries](#libraries)
 * [Azure Portal](#azure-portal)
 * [Deployment](#deployment)
   * [Using local Web Server](#using-local-web-server)
@@ -57,7 +57,7 @@ py -3 -m venv my_venv
 .\.my_venv\Scripts\activate
 ```
 
-## Libraries
+### Libraries
 
 This project is using:
 
@@ -99,12 +99,13 @@ nano .env
 Save your key-values like this:
 
 ```plaintext
-TRANSLATOR_KEY=your_key
-TRANSLATOR_ENDPOINT=your_endpoint
-TRANSLATOR_LOCATION=your_location
-VISION_KEY=your_key
-VISION_ENDPOINT=your_endpoint
-VISION_LOCATION=your_location
+LOCATION=
+TRANSLATOR_KEY=
+TRANSLATOR_ENDPOINT=
+VISION_KEY=
+VISION_ENDPOINT=
+FACE_KEY=
+FACE_ENDPOINT=
 ```
 
 ## Deployment
@@ -137,8 +138,9 @@ or:
 flask run -p 80
 ```
 
-This should run the web application on localhost:  
-[http://127.0.0.1/](http://127.0.0.1/)
+This should run the web application on localhost:
+
+<http://127.0.0.1/>
 
 ### Using Dockerfile
 
@@ -154,10 +156,6 @@ Run the image:
 docker run -it -p 80:80 ai-python-app
 # -it lets you stop it with Ctrl+C
 ```
-
-Try it:
-
-<http://127.0.0.1/>
 
 ### Using Kubernetes (Minikube)
 
