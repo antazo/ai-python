@@ -165,4 +165,3 @@ cython_debug/
 #.idea/
 my_venv/pyvenv.cfg
 acr-credentials*
-uploads/*
