@@ -233,7 +233,7 @@ You can use the image from my Docker Hub for integration tests (the keys are not
 
 ### Azure Container Registry (ACR)
 
-This repository integrates ACR in the GitHub Actions workflow. All the following steps are already automated in the **python-app.yml** file:
+This repository integrates ACR in the GitHub Actions workflow. All the following steps are already automated in the **ci-acr.yml** file:
 
 Log in to your Azure CLI:
 
@@ -283,7 +283,18 @@ az acr repository show-tags --name aipython --repository ai-python-app --output 
 Create the container. You will also need to check your Access Keys and privileges to be able to replace [ACR_PASSWORD]. The DNS label will be **aidemo**:
 
 ```powershell
-az container create --resource-group [AZURE_RESOURCE_GROUP] --name ai-python-app --image aipython.azurecr.io/ai-python-app:v1 --cpu 1 --memory 1 --registry-login-server aipython.azurecr.io --registry-username aipython --registry-password [ACR_PASSWORD] --ip-address Public --dns-name-label aidemo --ports 80
+az container create \
+    --resource-group [AZURE_RESOURCE_GROUP] \
+    --name ai-python-app \
+    --image aipython.azurecr.io/ai-python-app:v1 \
+    --cpu 1 \
+    --memory 1 \
+    --registry-login-server aipython.azurecr.io \
+    --registry-username aipython \
+    --registry-password [ACR_PASSWORD] \
+    --ip-address Public \
+    --dns-name-label aidemo \
+    --ports 80
 ```
 
 Try it:
