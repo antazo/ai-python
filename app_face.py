@@ -16,8 +16,8 @@ def face_post():
     image = request.files['image']
 
     # Load the values from environment variables
-    key = os.environ.get('FACE_KEY')
-    endpoint = os.environ.get('FACE_ENDPOINT')
+    key = os.environ.get('AI_SERVICES_KEY')
+    endpoint = os.environ.get('AI_SERVICES_ENDPOINT')
 
     # Indicate that we want to analyze the image and the API version (v1.0)
     path = '/face/v1.0/detect'

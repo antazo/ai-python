@@ -27,7 +27,8 @@ Technologies used: Python, Flask, Pytest, unittest, Selenium, Swagger, GSAP, Doc
   * [CI Azure Container Registry (ACR)](#ci-azure-container-registry-acr)
 * [Resources](#resources)
   * [Azure](#azure)
-  * [Azure AI](#azure-ai)
+  * [Azure AI Labs](#azure-ai-labs)
+  * [Azure AI Studio](#azure-ai-studios)
 
 ## Installation
 
@@ -90,22 +91,21 @@ pip install -r requirements.txt
 
 ## Azure Portal
 
-This application uses a valid subscription to Azure AI Services and Cognitive APIs to be able to use Language, Vision (Computer Vision, Custom Vision, Face), Decision, Speech, Metrics Advisor, and Document Intelligence. Your Keys and Endpoints information must be stored in a **.env** file:
+This application uses a valid subscription to Azure AI Services and Cognitive APIs to be able to use Language, Vision (Computer Vision, Custom Vision, Face), Decision, Speech, Metrics Advisor, and Document Intelligence.
+
+Create a single resource for  all of them, your Keys and Endpoints information must be stored in a **.env** file:
 
 ```bash
 nano .env
 ```
 
-Save your key-values like this:
+Note that the Translator service uses its own endpoint. Save your key-values like this:
 
 ```plaintext
 LOCATION=
-TRANSLATOR_KEY=
-TRANSLATOR_ENDPOINT=
-VISION_KEY=
-VISION_ENDPOINT=
-FACE_KEY=
-FACE_ENDPOINT=
+AI_SERVICES_KEY=
+AI_SERVICES_ENDPOINT=
+TRANSLATOR_ENDPOINT=https://api.cognitive.microsofttranslator.com/
 ```
 
 ## Deployment
@@ -333,33 +333,30 @@ This will output a JSON to the file **acr-credentials.json** with the rest of in
 ### Azure
 
 [Create a container image for deployment to Azure Container Instances](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app)
-
 [Deploy a container instance in Azure using the Azure portal](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-portal)
-
 [Getting started with Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started)
-
 [Create an Azure storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal)
-
 [Create a single database - Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/single-database-create-quickstart?view=azuresql&tabs=azure-portal)
-
 [Use the Azure portal to create a virtual network](https://learn.microsoft.com/en-us/azure/virtual-network/quick-create-portal)
-
 [Create a Windows virtual machine in the Azure portal](https://learn.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-portal)
-
 [Host a web application with Azure App Service](https://learn.microsoft.com/en-us/training/modules/host-a-web-app-with-azure-app-service/)
-
 [Deploy and run a containerized web app with Azure App Service](https://learn.microsoft.com/en-us/training/modules/deploy-run-container-app-service/)
 
-### Azure AI
+### Azure AI Labs
 
 [Lab Environment Setup](https://microsoftlearning.github.io/AI-102-AIEngineer/Instructions/00-setup.html)
-
 [Azure AI Vision documentation](https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/)
-
 [Create computer vision solutions with Azure AI Vision](https://learn.microsoft.com/en-us/training/paths/create-computer-vision-solutions-azure-ai/)
-
 [Create Translator service](https://learn.microsoft.com/en-us/training/modules/python-flask-build-ai-web-app/5-exercise-create-translator-service)
-
+[Lab files for Azure AI Vision modules](https://github.com/MicrosoftLearning/mslearn-ai-vision)
 [Lab 01 - Machine Learning: Explore Automated Machine Learning in Azure Machine Learning](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/01-machine-learning.html)
-
 [Lab 02 - Content Safety: Explore Azure AI Services](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/02-content-safety.html)
+[Lab 11 - Explore an Azure AI Search index (UI)](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/11-ai-search.html)
+
+### Azure AI Studios
+
+[Azure Portal](https://portal.azure.com?azure-portal=true)
+[Vision Studio](https://portal.vision.cognitive.azure.com?azure-portal=true)
+[Language Studio](https://language.cognitive.azure.com)
+[Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio)
+[Sample documents](https://aka.ms/mslearn-receipt)

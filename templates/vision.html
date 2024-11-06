@@ -11,13 +11,36 @@
         <h1>Vision</h1>
         <form action="{{ url_for('vision.vision_post') }}" method="post" enctype="multipart/form-data">
             <label for="image">Upload an image:</label>
-            <input type="file" id="image" name="image" accept="image/*">
+            <input type="file" id="image" name="image" accept="image/*" onchange="previewImage(event)">
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
+        <div class="mt-3">
+            <img id="image_path" src="#" alt="Image Preview" style="display: none; max-width: 100%; height: auto;">
+        </div>
         {% if description %}
+        <div id="description-container">
             <h2>Description:</h2>
             <p>{{ description }}</p>
+        </div>
         {% endif %}
     </div>
+
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById('image_path');
+                output.src = reader.result;
+                output.style.display = 'block';
+                
+                // Hide the description container
+                var descriptionContainer = document.getElementById('description-container');
+                if (descriptionContainer) {
+                    descriptionContainer.style.display = 'none';
+                }
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </body>
 </html>

@@ -15,9 +15,14 @@ def vision_post():
     # Read the image from the form
     image = request.files['image']
 
+    # Save the uploaded image to a directory
+    image_filename = image.filename
+    image_path = os.path.join('uploads', image_filename)
+    image.save(image_path)
+
     # Load the values from environment variables
-    key = os.environ.get('VISION_KEY')
-    endpoint = os.environ.get('VISION_ENDPOINT')
+    key = os.environ.get('AI_SERVICES_KEY')
+    endpoint = os.environ.get('AI_SERVICES_ENDPOINT')
 
     # Indicate that we want to analyze the image and the API version (3.2)
     path = '/vision/v3.2/analyze'
@@ -34,7 +39,8 @@ def vision_post():
 
     try:
         # Make the request
-        response = requests.post(constructed_url, headers=headers, data=image.read())
+        with open(image_path, 'rb') as image_data:
+            response = requests.post(constructed_url, headers=headers, data=image_data)
         response.raise_for_status()  # Raise an exception for HTTP errors
 
         # Parse the JSON response
@@ -50,4 +56,4 @@ def vision_post():
         # Handle any other exceptions
         description = f"An unexpected error occurred: {e}"
 
-    return render_template('vision.html', description=description)
+    return render_template('vision.html', description=description, image_path=image_path)

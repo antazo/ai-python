@@ -17,7 +17,7 @@ def translator_post():
     target_language = request.form['language']
 
     # Load the values from .env
-    key = os.environ['TRANSLATOR_KEY']
+    key = os.environ['AI_SERVICES_KEY']
     endpoint = os.environ['TRANSLATOR_ENDPOINT']
     location = os.environ['LOCATION']
 
