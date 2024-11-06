@@ -337,7 +337,7 @@ This will output a JSON to the file **acr-credentials.json** with the rest of in
 [Host a web application with Azure App Service](https://learn.microsoft.com/en-us/training/modules/host-a-web-app-with-azure-app-service/)\
 [Deploy and run a containerized web app with Azure App Service](https://learn.microsoft.com/en-us/training/modules/deploy-run-container-app-service/)\
 [Create a container image for deployment to Azure Container Instances](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app)\
-[Deploy a container instance in Azure using the Azure portal](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-portal)\
+[Deploy a container instance in Azure using the Azure portal](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-portal)
 
 ### Azure AI
 
@@ -345,7 +345,7 @@ This will output a JSON to the file **acr-credentials.json** with the rest of in
 [Vision Studio](https://portal.vision.cognitive.azure.com?azure-portal=true)\
 [Language Studio](https://language.cognitive.azure.com)\
 [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio)\
-[Sample documents](https://aka.ms/mslearn-receipt)\
+[Sample documents](https://aka.ms/mslearn-receipt)
 
 #### Labs
 
@@ -356,4 +356,4 @@ This will output a JSON to the file **acr-credentials.json** with the rest of in
 [Lab files for Azure AI Vision modules](https://github.com/MicrosoftLearning/mslearn-ai-vision)\
 [Lab 01 - Machine Learning: Explore Automated Machine Learning in Azure Machine Learning](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/01-machine-learning.html)\
 [Lab 02 - Content Safety: Explore Azure AI Services](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/02-content-safety.html)\
-[Lab 11 - Explore an Azure AI Search index (UI)](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/11-ai-search.html)\
+[Lab 11 - Explore an Azure AI Search index (UI)](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/11-ai-search.html)
