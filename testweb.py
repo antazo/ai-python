@@ -3,7 +3,16 @@
 
 # TODO: Comment out and implement the test results when the endpoints are up
 # HINT: Check for the Azure AI APIs documentation
-    
+
+# This script tests the web application with Selenium WebDriver, 
+# which is a tool for automating web application testing.
+# Make sure the web application is running before running this script.
+
+# This script is not included in the GitHub Actions workflow, so you must
+# run it manually to test the web application:
+#   $ pip install selenium
+#   $ python testweb.py
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys

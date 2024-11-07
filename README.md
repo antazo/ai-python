@@ -65,6 +65,9 @@ This project is using:
 pip install flask flask-swagger-ui python-dotenv requests azure-mgmt-compute
 ```
 
+[!Web testing]
+Selenium is not included in the workflow, run it manually.
+
 Optionally, we can automate this process by adding the list of modules to **requirements.txt**. To create one with the current modules installed in our environment:
 
 ```bash
@@ -353,10 +356,12 @@ This will output a JSON to the file **acr-credentials.json** with the rest of in
 ### Azure AI
 
 [Azure Portal](https://portal.azure.com?azure-portal=true)\
+[Azure AI Studio](https://ai.azure.com/)\
 [Vision Studio](https://portal.vision.cognitive.azure.com?azure-portal=true)\
 [Language Studio](https://language.cognitive.azure.com)\
 [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio)\
-[Sample documents](https://aka.ms/mslearn-receipt)
+[Sample documents](https://aka.ms/mslearn-receipt)\
+[OneDrive](https://onedrive.live.com)
 
 #### Labs
 
@@ -367,4 +372,6 @@ This will output a JSON to the file **acr-credentials.json** with the rest of in
 [Lab files for Azure AI Vision modules](https://github.com/MicrosoftLearning/mslearn-ai-vision)\
 [Lab 01 - Machine Learning: Explore Automated Machine Learning in Azure Machine Learning](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/01-machine-learning.html)\
 [Lab 02 - Content Safety: Explore Azure AI Services](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/02-content-safety.html)\
-[Lab 11 - Explore an Azure AI Search index (UI)](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/11-ai-search.html)
+[Lab 11 - Explore an Azure AI Search index (UI)](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/11-ai-search.html)\
+[Lab 12 - Explore Microsoft Copilot in Microsoft Edge](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/12-generative-ai.html)\
+[Explore the components and tools of the Azure AI Studio](https://microsoftlearning.github.io/mslearn-ai-studio/Instructions/01-Explore-ai-studio.html)
