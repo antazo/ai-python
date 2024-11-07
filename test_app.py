@@ -9,12 +9,12 @@ class TestApp(unittest.TestCase):
         self.app = app.test_client()
         self.app.testing = True
 
-    def test_hello_default(self):
+    def test_home_default(self):
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Hello', response.data)
 
-    def test_hello_with_name(self):
+    def test_home_with_name(self):
         response = self.app.get('/?name=Alex')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Hello Alex', response.data)
