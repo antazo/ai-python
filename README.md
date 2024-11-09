@@ -1,6 +1,6 @@
-# Azure AI with Python (Cognitive Services)
+# AI with Python (Azure AI)
 
-Harness Azure AI advanced capabilities in a Pythonic way.  The DotNet version of this repository is [here](https://github.com/antazo/ai-dotnet).
+Harness AI advanced capabilities in a Pythonic way.  The DotNet version of this repository is [here](https://github.com/antazo/ai-dotnet).
 
 A valid subscription is needed for your own endpoints. The project uses virtual environments, continuous integration pipelines, and containerization as optional. This repository is automatically deployed to container registries (Docker Hub and ACR) through GitHub Actions workflows.
 
