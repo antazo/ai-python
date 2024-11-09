@@ -1,6 +1,8 @@
 # Azure AI with Python (Cognitive Services)
 
-Harness Azure AI advanced capabilities in a Pythonian way. A valid subscription is needed for your own endpoints. The project uses virtual environments, continuous integration pipelines, and containerization as optional. This repository is automatically deployed to container registries (Docker Hub and ACR) through GitHub Actions.
+Harness Azure AI advanced capabilities in a Pythonic way.  The DotNet version of this repository is [https://github.com/antazo/ai-dotnet](here).
+
+A valid subscription is needed for your own endpoints. The project uses virtual environments, continuous integration pipelines, and containerization as optional. This repository is automatically deployed to container registries (Docker Hub and ACR) through GitHub Actions workflows.
 
 Cognitive services used (so far):
 
@@ -95,11 +97,7 @@ pip install -r requirements.txt
 
 This application uses a valid subscription to Azure AI Services and Cognitive APIs to be able to use Language, Vision (Computer Vision, Custom Vision, Face), Decision, Speech, Metrics Advisor, and Document Intelligence.
 
-Create a single resource for  all of them, your Keys and Endpoints information must be stored in a **.env** file:
-
-```bash
-nano .env
-```
+Create a single resource for all of them, your Keys and Endpoints information must be stored in a **.env** file.
 
 Note that the Translator service uses its own endpoint. Save your key-values like this:
 
@@ -374,4 +372,5 @@ This will output a JSON to the file **acr-credentials.json** with the rest of in
 [Lab 02 - Content Safety: Explore Azure AI Services](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/02-content-safety.html)\
 [Lab 11 - Explore an Azure AI Search index (UI)](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/11-ai-search.html)\
 [Lab 12 - Explore Microsoft Copilot in Microsoft Edge](https://microsoftlearning.github.io/mslearn-ai-fundamentals/Instructions/Labs/12-generative-ai.html)\
-[Explore the components and tools of the Azure AI Studio](https://microsoftlearning.github.io/mslearn-ai-studio/Instructions/01-Explore-ai-studio.html)
+[Explore the components and tools of the Azure AI Studio](https://microsoftlearning.github.io/mslearn-ai-studio/Instructions/01-Explore-ai-studio.html)\
+[Explore space with Python and Visual Studio Code; inspired by Netflix's Over the Moon](https://learn.microsoft.com/en-us/training/paths/explore-space-using-python/)

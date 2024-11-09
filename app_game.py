@@ -36,7 +36,7 @@ def game():
             enemy_num = self.toNumericalChoice(self.enemy)
 
             if self.rules[player_num][enemy_num] == 1:
-                return "You win!"
+                return "You WIN!"
             elif self.rules[player_num][enemy_num] == -1:
                 return "You lose!"
             else:
@@ -47,7 +47,7 @@ def game():
     choices = list(game.switcher.keys())
 
     choicePlayer = request.args.get('choice').lower() if request.args.get('choice') in list(game.switcher.keys()) else None
-    choiceEnemy = random.choice(list(game.switcher.keys()))
+    choiceEnemy = random.choice(choices)
     
     result = None
     if choicePlayer:
